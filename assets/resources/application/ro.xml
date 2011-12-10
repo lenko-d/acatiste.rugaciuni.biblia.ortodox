@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Romanian FBReaderJ resources -->
+<!-- Romanian FBReaderJ resources maryhit -->
 <resources>
-	<node name="library" value="Biblioteca FBReader">
+	<node name="library" value="Biblioteca">
 		<node name="unknownAuthor" value="Autor necunoscut"/>
 		<node name="booksWithNoTags" value="Carti fara etichete"/>
 		<node name="demo" value="esantion"/>
@@ -26,7 +26,7 @@
 		<node name="found" value="S-au gasit">
 			<node name="summary" value="Rezultatele cautarii pentru: %s"/>
 		</node>
-		<node name="fileTree" value="Listare copac a fisierelor">
+		<node name="fileTree" value="Listare sistem de fisiere">
 			<node name="summary" value="Cauta in sistemul de fisiere"/>
 		</node>
 		<node name="fileTreeRoot" value="Dispozitiv">
@@ -35,8 +35,8 @@
 		<node name="fileTreeCard" value="Cardul de memorie">
 			<node name="summary" value="Cardul de memorie introdus în aparat"/>
 		</node>
-		<node name="fileTreeLibrary" value="Biblioteca FBReader">
-			<node name="summary" value="Carti din directorul FBReader"/>
+		<node name="fileTreeLibrary" value="Biblioteca">
+			<node name="summary" value="Carti din directorul aplicatiei"/>
 		</node>
 		<node name="menu">
 			<node name="localSearch" value="Cautare locala"/>
@@ -47,7 +47,7 @@
 		<node name="addToFavorites" value="Adauga la favorite"/>
 		<node name="removeFromFavorites" value="Sterge din favorite"/>
 	</node>
-	<node name="networkLibrary" value="Reteaua de biblioteci FBReader">
+	<node name="networkLibrary" value="Reteaua de biblioteci Online">
 		<node name="byAuthor" value="Dupa autor">
 			<node name="summary" value="Carti sortate dupa autor"/>
 		</node>
@@ -184,8 +184,8 @@
 		<node name="cannotCreateFile" value="Nu se poate crea fisierul%s"/>
 	</node>
 	<node name="tocView">
-		<node name="expandTree" value="Expand copac"/>
-		<node name="collapseTree" value="Reducere copac"/>
+		<node name="expandTree" value="Deschide arbore"/>
+		<node name="collapseTree" value="Inchide arbore"/>
 		<node name="readText" value="Cititi textul cartii"/>
 	</node>
 	<node name="bookmarksView">
@@ -205,7 +205,7 @@
 		<node name="returnTo" value="Înapoi la&#8230;"/>
 		<node name="back" value="Înapoi"/>
 		<node name="forward" value="Înainte"/>
-		<node name="close" value="Inchide FBReader"/>
+		<node name="close" value="Inchide Aplicatia"/>
 	</node>
 	<node name="selection" value="Selectie">
 		<node name="copyToClipboard" value="Copiati în clipboard"/>
@@ -220,8 +220,8 @@
 		<node name="bookInfo" value="Informatii despre carte"/>
 		<node name="library" value="Biblioteca"/>
 		<node name="toc" value="Cuprins"/>
-		<node name="day" value="Zi"/>
-		<node name="night" value="Noapte"/>
+		<node name="day" value="Mod Zi"/>
+		<node name="night" value="Mod Noapte"/>
 		<node name="networkLibrary" value="Biblioteca din retea"/>
 		<node name="navigate" value="Navigati">
 			<node name="toc" value="Cuprins"/>
@@ -598,12 +598,12 @@
 					<node name="summaryOff" value="Nu afisa elementele pentru ultimele 3 pozitii în carte"/>
 				</node>
 				<node name="backKeyAction" value="Actiunea tastei inapoi">
-					<node name="exit" value="Inchide FBReader"/>
+					<node name="exit" value="Inchide Aplicatia"/>
 					<node name="goBack" value="Navigati înapoi"/>
 					<node name="cancelMenu" value="Arata  meniul de anulare"/>
 				</node>
 				<node name="backKeyLongPressAction" value="Actiune pentru apasarea lunga a tastei inapoi">
-					<node name="exit" value="Inchide FBReader"/>
+					<node name="exit" value="Inchide Aplicatia"/>
 					<node name="goBack" value="Navigati înapoi"/>
 					<node name="cancelMenu" value="Arata meniul de anulare"/>
 					<node name="none" value="Nicio actiune"/>
@@ -624,20 +624,20 @@
 			<node name="message" value="Fisierul cartii va fi sters ireversibil. Sunteti sigur?"/>
 		</node>
 		<node name="redownloadFileBox">
-			<node name="message" value="Fisierul exista deja. Redownload?"/>
+			<node name="message" value="Fisierul exista deja. Doriti reincarcarea lui?"/>
 		</node>
 		<node name="waitMessage">
 			<node name="downloadingFile" value="Descarcare carte%s"/>
-			<node name="search" value="Cautarea a inceput. Va rugam, asteptati&#8230;"/>
-			<node name="loadInfo" value="Se incarca informatii. Va rugam, asteptati&#8230;"/>
-			<node name="loadingBook" value="Deschiderea carte. Va rugam, asteptati&#8230;"/>
-			<node name="loadingBookList" value="Deschiderea biblioteca. Va rugam, asteptati&#8230;"/>
-			<node name="creatingBooksDatabase" value="Crearea bazei de date de carti. Va rugam, asteptati&#8230;"/>
-			<node name="updatingBooksDatabase" value="Actualizarea bazei de date carti. Va rugam, asteptati&#8230;"/>
-			<node name="loadingNetworkLibrary" value="Se deschide biblioteca. Va rugam, asteptati&#8230;"/>
-			<node name="authentication" value="Autentificare. Va rugam, asteptati&#8230;"/>
-			<node name="signOut" value="Iesire. Va rugam, asteptati&#8230;"/>
-			<node name="purchaseBook" value="Se cumpara cartea. Va rugam, asteptati&#8230;"/>
+			<node name="search" value="Cautarea a inceput. Va rugam asteptati&#8230;"/>
+			<node name="loadInfo" value="Se incarca informatiile necesare. Va rugam asteptati&#8230;"/>
+			<node name="loadingBook" value="Se deschide cartea. Va rugam asteptati&#8230;"/>
+			<node name="loadingBookList" value="Deschiderea biblioteca. Va rugam asteptati&#8230;"/>
+			<node name="creatingBooksDatabase" value="Crearea bazei de date de carti. Va rugam asteptati&#8230;"/>
+			<node name="updatingBooksDatabase" value="Actualizarea bazei de date carti. Va rugam asteptati&#8230;"/>
+			<node name="loadingNetworkLibrary" value="Se deschide biblioteca. Va rugam asteptati&#8230;"/>
+			<node name="authentication" value="Autentificare. Va rugam asteptati&#8230;"/>
+			<node name="signOut" value="Iesire. Va rugam asteptati&#8230;"/>
+			<node name="purchaseBook" value="Se cumpara cartea. Va rugam asteptati&#8230;"/>
 			<node name="loadingCatalogInfo" value="Se incarca informatii despre catalog. Va rugam asteptati&#8230;"/>
 			<node name="loadingNetworkBookInfo" value="Se incarca informatii despre carte. Va rugam asteptati &#8230;"/>
 			<node name="updatingCatalogsList" value="Actualizare lista de cataloage. Va rugam asteptati&#8230;"/>
@@ -665,7 +665,7 @@
 			<node name="register" value="Înscrieti-va"/>
 		</node>
 		<node name="CustomCatalogDialog">
-			<node name="title" value="FBReader: adauga catalog personalizat"/>
+			<node name="title" value="Aplicatie: adauga catalog personalizat"/>
 			<node name="catalogTitle" value="Titlu"/>
 			<node name="catalogUrl" value="URL-ul"/>
 			<node name="catalogSummary" value="Rezumat"/>
@@ -683,7 +683,7 @@
 		</node>
 	</node>
 	<node name="errorMessage">
-		<node name="cannotRunAndroidMarket" value="Nu pot accesa Android Market. Va rugam, instalati%s manual"/>
+		<node name="cannotRunAndroidMarket" value="Nu pot accesa Android Market. Va rugam instalati%s manual"/>
 		<node name="textNotFound" value="Nu exista nici un text adecvat în carte, imi pare rau"/>
 		<node name="bookNotFound" value="Nu exista carti adecvate în biblioteca, îmi pare rau"/>
 		<node name="bookmarkNotFound" value="Nu exista marcaje adecvate, imi pare rau"/>
@@ -706,8 +706,8 @@
 	</node>
 	<node name="crash">
 		<node name="fixBooksDirectory">
-			<node name="title" value="Problema FBReader"/>
-			<node name="text" value="Directorul de cache pentru FBReader nu este accesibil pentru scriere. Poate ati uitat sa inserati sau montati cartela de memorie. Va rugam sa corectati aceasta problema sau introduceti un alt nume de director de mai jos."/>
+			<node name="title" value="Problema in aplicatie"/>
+			<node name="text" value="Directorul de cache pentru nu este accesibil pentru scriere. Poate ati uitat sa inserati sau montati cartela de memorie. Va rugam sa corectati aceasta problema sau introduceti un alt nume de director de mai jos."/>
 		</node>
 	</node>
 </resources>

@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink"><description><title-info><author><last-name>maryhit.com</last-name></author> <book-title>Despre FBReaderJ</book-title> <lang>ro</lang></title-info></description>
+<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink"><description><title-info><genre>antique</genre><author><first-name>Un</first-name><last-name>Crestin</last-name></author><book-title>Despre Aplicatie</book-title><lang>ro</lang>
+<sequence name="Roman Ortodox" number="1"/></title-info><document-info><author><first-name>Un</first-name><last-name>Crestin</last-name></author><program-used>calibre 0.8.22</program-used><date>20.10.2011</date><id>effe129d-f7b0-4a41-91a6-8ead8d65b713</id><version>1.0</version></document-info>
 <body>
-<title><p>Despre FBReader &FBReaderVersion;</p></title>
-<p>FBReader este o aplicatie pentru citit carti electronice. FBReader este compatibil cu urmatoarele formate de fisiere: <code>ePub</code> si <code>fb2</code>. Cartile protejate cu DRM nu sunt suportate. Daca aveti carti in formatele suportate, puteti sa le puneti in directorul <code>Books</code> de pe cardul de memorie, iar apoi cartile vor putea fi gasite in <a l:href="fbreader-action://library">librarie</a>. <a l:href="fbreader-action://networkLibrary">Libararia din Retea</a> contine o multitudine de carti (e-books) care pot fi preluate fie gratis, fie contra cost.</p>
-<p>Pentru a da pagina trageti cu degetul orizontal pe ecran, sau folositi tastele de volum.</p>
-<p>Butonul <a l:href="fbreader-action://preferences">Preferinte Dialog</a> va da voie sa personalizati aplicatia  FBReader pe gustul dumneavoastra: puteti schimba culorile, fonturile, diverse directoare, cum sa dati pagina, etc.</p>
-<p><a l:href="fbreader-action://menu">Meniul FBReader</a> va da voie sa navigati prin librarii si sa controlali aplicatia. Daca dispozitivul dumneavoastra nu are un buton de <code>Meniu</code>, apasati pe partea centrala inferioara a ecranului pentru a intra in meniu.</p>
-<p>Savurati aplicatia!</p>
-<empty-line/>
-<subtitle><p>Site-uri inrudite</p></subtitle>
-<p>Mai multe informatii despre FBReader puteti gasi pe <a l:href="http://www.fbreader.org/FBReaderJ">site-ul nostru</a>.</p>
-<p>Urmariti-ne <a l:href="http://twitter.com/fbreader">twitter</a> pentru a fi la curent cu noile versiuni si noutati despre aplicatie.</p>
-<p><a l:href="http://www.fbreader.org/donation/make.php">Donati</a> daca doriti sa incurajati dezvolvarea aplicatiei FBReader.</p>
-<p>Puteti sa contactati autorii FBReader prin <a l:href="mailto:contact@geometerplus.com">e-mail</a>.</p>
-<p>Traducere in limba Romana facuta de echipa <a l:href="http://ortodox.maryhit.com/">maryhit.com</a></p>
+<title><p>Acatiste Rugaciuni Scrieri Ortodoxe &FBReaderVersion;</p></title>
+<empty-line />
+<subtitle><p>Despre Aplicatie:</p></subtitle>
+<p>Acatiste_Rugaciuni_Scrieri_Ortodoxe este o aplicatie pentru citit scrieri ortodoxe in principal, care are la baza o aplicatie open source pentru citit carti electronice <code>ePub</code> si <code>fb2</code>.</p>
+<p>Acum aplicatia are: Biblia Ortodoxa (inclusiv varianta adnotata Bartolomeu Anania, pe intelesul tuturor), Acatiste, Paraclise, Rugaciuni si Scrieri Ortodoxe, in total peste 100 de carti.  </p>
+<p>Pe parcurs vom incerca sa adaugam si mai multe carti ortodoxe.</p>
+<empty-line />
+<subtitle><p>Utilizare:</p></subtitle>
+<p>Pentru a gasi cartile incluse in aplicatie, intrati in <a l:href="fbreader-action://library">biblioteca</a> (apasati tasta meniu si selectati biblioteca).
+Oriunde in biblioteca se poate cauta numele cartii folosind tasta speciala Android pentru cautare.</p>
+
+<p>
+    Pentru a da pagina trageti cu degetul orizontal pe ecran, sau folositi tastele de volum.</p><empty-line />
+<p>
+    Butonul <a l:href="fbreader-action://preferences">Preferinte Dialog</a> va da voie sa personalizati aplicatia pe gustul dumneavoastra: puteti schimba culorile, fonturile, diverse directoare, cum sa dati pagina, etc.</p>
+
+<p>
+    <a l:href="fbreader-action://menu">Meniul Aplicatiei</a> va da voie sa navigati prin biblioteci si sa controlali aplicatia. Daca dispozitivul dumneavoastra nu are un buton de <code>Meniu</code>, apasati pe partea centrala inferioara a ecranului pentru a intra in meniu.</p>
+<empty-line />
+
+<subtitle><p>Alte detalii:</p></subtitle>
+
+<p> Daca aveti carti in formatele suportate, puteti sa le puneti in directorul <code>Books</code> de pe cardul de memorie, iar apoi cartile vor putea fi gasite in <a l:href="fbreader-action://library">biblioteca</a>.</p>
+<p>
+    Exista si o <a l:href="fbreader-action://networkLibrary">Biblioteca Online</a> care contine o multitudine de carti din toate domeniile (e-books) care pot fi preluate fie gratis, fie contra cost. Pentru a fi gasite si de utilizatorii non-android, pe viitor se va incerca postarea acestor carti ortodoxe si acolo.</p><empty-line />
+<p>
+    Mai multe informatii despre FBReader (aplicatia de baza) puteti gasi pe site-ul <a l:href="http://www.fbreader.org/FBReaderJ">FBReader</a>.</p>
+    <p>Aceasta aplicatie este distribuita gratuit, sub licenta GPL.</p>
+	Mai multe informatii despre Acatiste_Rugaciuni_Scrieri_Ortodoxe veti putea gasi pe site-ul: <a l:href="http://ortodox.maryhit.com/">ortodox.maryhit.com</a> sau <a l:href="https://sites.google.com/site/acatisterugaciuniortodoxe/">acatisterugaciuniortodoxe</a>.
+	Ne puteti urmari pe <a l:href="https://plus.google.com/u/0/b/104472561909298753983/#104472561909298753983/posts">Google Plus</a>.
+		
+	Daca aveti intrebari, sugestii sau puteti ajuta aplicatia, ne puteti contacta prin <a l:href="mailto:aplicatii.romanesti@gmail.com">e-mail</a>.
+	Nu este necesar sa aveti cunostinte avansate de calculatoare pentru a participa. Inclusiv promovarea aplicatiei este foarte importanta pentru a incuraja continuarea ei.  	 
+	</p><empty-line />
 </body>
 </FictionBook>

@@ -24,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Bitmap;
 
-import org.geometerplus.zlibrary.ui.android.R;
+import org.geometerplus.zlibrary.ui.android.aplicatii.romanesti.R;
 
 import org.geometerplus.zlibrary.core.image.ZLImage;
 import org.geometerplus.zlibrary.core.image.ZLLoadableImage;

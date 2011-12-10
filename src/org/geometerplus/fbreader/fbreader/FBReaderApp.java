@@ -28,6 +28,7 @@ import java.io.OutputStream;
 //maryhit: end imports for SDCardCopy methods
 import java.util.*;
 
+import org.geometerplus.android.util.UIUtil;
 import org.geometerplus.zlibrary.core.library.ZLibrary;
 import org.geometerplus.zlibrary.core.resources.ZLResource;
 import org.geometerplus.zlibrary.core.filesystem.*;
@@ -40,6 +41,11 @@ import org.geometerplus.zlibrary.text.view.ZLTextWordCursor;
 
 import org.geometerplus.fbreader.bookmodel.BookModel;
 import org.geometerplus.fbreader.library.*;
+//maryhit: again for SDCardCopy
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.res.AssetManager;
+import android.util.Log;
 
 public final class FBReaderApp extends ZLApplication {
 	public final ZLBooleanOption AllowScreenBrightnessAdjustmentOption =

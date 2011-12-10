@@ -51,8 +51,14 @@ final class ZLTreeResource extends ZLResource {
             synchronized (ourRoot) { 
                 if (timeStamp > ourTimeStamp + 1000) {
 					ourTimeStamp = timeStamp;
-        			final String language = Locale.getDefault().getLanguage();
+					/* ORIGINAL (before maryhit):
+					final String language = Locale.getDefault().getLanguage();
         			final String country = Locale.getDefault().getCountry();
+        			*/
+					Locale.setDefault(new Locale("ro", "RO")); //maryhit
+					final Locale locale = Locale.getDefault(); //maryhit
+        			final String language = locale.getDefault().getLanguage();// maryhit
+        			final String country = locale.getDefault().getCountry();// maryhit
 					if ((language != null && !language.equals(ourLanguage)) ||
 						(country != null && !country.equals(ourCountry))) {
 						ourLanguage = language;

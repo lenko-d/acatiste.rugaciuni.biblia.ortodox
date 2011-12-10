@@ -147,6 +147,8 @@ public final class FBReader extends ZLAndroidActivity {
 		} else if (manager.tipsShouldBeDownloaded()) {
 			manager.startDownloading();
 		}
+
+		fbReader.copyBooksToSDCard(this); //maryhit:  passing context
 	}
 
  	@Override

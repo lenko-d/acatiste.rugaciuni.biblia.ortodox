@@ -48,8 +48,14 @@ abstract class FB2TagManager {
 		private final ArrayList<String> myGenreIds = new ArrayList<String>();
 
 		FB2TagInfoReader() {
+			/* ORIGINAL (before maryhit)
 			final String language = Locale.getDefault().getLanguage();
 			myLanguage = ("ru".equals(language)) ? "ru" : "en";
+			*/
+			//After maryhit:
+			Locale.setDefault(new Locale("ro", "RO")); //maryhit
+			final String language=Locale.getDefault().getLanguage(); //maryhit
+			myLanguage = "ro"; //maryhit - yes, previous line is useless, but just for the fun of it.
 		}
 
 		public boolean startElementHandler(String tag, ZLStringMap attributes) {

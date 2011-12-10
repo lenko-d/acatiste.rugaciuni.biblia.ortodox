@@ -35,7 +35,7 @@ public class ScrollingPreferences {
 		byTap, byFlick, byTapAndFlick
 	}
 	public final ZLEnumOption<FingerScrolling> FingerScrollingOption =
-		new ZLEnumOption<FingerScrolling>("Scrolling", "Finger", FingerScrolling.byTapAndFlick);
+		new ZLEnumOption<FingerScrolling>("Scrolling", "Finger", FingerScrolling.byFlick);//maryhit: ex-default was: byTapAndFlick 
 
 	public final ZLEnumOption<ZLView.Animation> AnimationOption =
 		new ZLEnumOption<ZLView.Animation>("Scrolling", "Animation", ZLView.Animation.slide);

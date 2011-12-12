@@ -33,7 +33,7 @@ apk_save(){
 
 	SRC_APK_FULLPATH_NAME=`ls $prj_dir/bin/*-release.apk`
 	APK_NAME=`ls $prj_dir/bin/ | grep "-release.apk"`
-	NEW_APK_NAME=${CURRENT_BUILD_BRANCH}_${VERSION}_${APK_NAME}
+	NEW_APK_NAME=${VERSION}_${CURRENT_BUILD_BRANCH}_${APK_NAME}
 	
 	if [[ -n ${NEW_APK_NAME} ]];then
 		echo "______ SAVING $NEW_APK_NAME in $out_dir .......  ..... -START-"

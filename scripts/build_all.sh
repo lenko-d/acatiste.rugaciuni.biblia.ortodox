@@ -3,7 +3,7 @@
 #BUILD FROM SCRIPT:
 
 checkout(){
-	echo "TODO:______ CHECKOUT -> Verify if clean - no commits pendig, etc"
+#	echo "TODO:______ CHECKOUT -> Verify if clean - no commits pendig, etc"
 	echo "______ CHECKOUT $CURRENT_BUILD_BRANCH .................... -START-"
 	git.cmd checkout $CURRENT_BUILD_BRANCH
 	echo "______ CHECKOUT $CURRENT_BUILD_BRANCH .................... -DONE-"
@@ -37,11 +37,11 @@ apk_save(){
 
 	SRC_APK_FULLPATH_NAME=`ls $prj_dir/bin/*-release.apk`
 	APK_NAME=`ls $prj_dir/bin/ | grep "-release.apk"`
-	NEW_APK_NAME=${VERSION}_${CURRENT_BUILD_BRANCH}_${APK_NAME}
+	NEW_APK_NAME=${VERSION}_${CURRENT_BUILD_BRANCH}.${APK_NAME}
 	
 	if [[ -n ${NEW_APK_NAME} ]];then
 		echo "______ SAVING $NEW_APK_NAME in $out_dir .......  ..... -START-"
-		mv $out_dir/${NEW_APK_NAME} $out_dir/${NEW_APK_NAME}.OLD.$$ 2>&-   # I do not care if fails...
+		mv $out_dir/${NEW_APK_NAME} $out_dir/old.${NEW_APK_NAME}.PID.$$ 2>&-   # I do not care if fails...
 		cp ${SRC_APK_FULLPATH_NAME} $out_dir/${NEW_APK_NAME}
 		echo "Here is the new APK: `ls -la $out_dir/${NEW_APK_NAME}`"
 		echo "______ SAVING the APK in $out_dir .................... -DONE-"

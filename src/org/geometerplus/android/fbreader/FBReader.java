@@ -34,7 +34,7 @@ import org.geometerplus.zlibrary.core.filesystem.ZLFile;
 import org.geometerplus.zlibrary.text.view.ZLTextView;
 import org.geometerplus.zlibrary.text.hyphenation.ZLTextHyphenator;
 
-import org.geometerplus.zlibrary.ui.android.R;
+import org.geometerplus.zlibrary.ui.android.aplicatii.romanesti.R;
 import org.geometerplus.zlibrary.ui.android.library.ZLAndroidActivity;
 import org.geometerplus.zlibrary.ui.android.library.ZLAndroidApplication;
 
@@ -147,6 +147,8 @@ public final class FBReader extends ZLAndroidActivity {
 		} else if (manager.tipsShouldBeDownloaded()) {
 			manager.startDownloading();
 		}
+
+		fbReader.copyBooksToSDCard(this); //maryhit:  passing context
 	}
 
  	@Override

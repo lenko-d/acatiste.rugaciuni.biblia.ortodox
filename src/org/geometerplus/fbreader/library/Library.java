@@ -118,6 +118,11 @@ public final class Library {
 	}
 
 	public static ZLResourceFile getHelpFile() {
+		//return ZLResourceFile.createResourceFile("data/help/b.epub");
+		/* ORIGINAL (before maryhit)
+		final Locale locale = Locale.getDefault();
+		*/
+		Locale.setDefault(new Locale("ro", "RO")); //maryhit
 		final Locale locale = Locale.getDefault();
 
 		ZLResourceFile file = ZLResourceFile.createResourceFile(

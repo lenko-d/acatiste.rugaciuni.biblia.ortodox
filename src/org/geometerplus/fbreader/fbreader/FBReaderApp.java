@@ -18,9 +18,17 @@
  */
 
 package org.geometerplus.fbreader.fbreader;
-
+//maryhit imports for SDCardCopy methods
+import java.io.File; 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+//maryhit: end imports for SDCardCopy methods
 import java.util.*;
 
+import org.geometerplus.android.util.UIUtil;
 import org.geometerplus.zlibrary.core.library.ZLibrary;
 import org.geometerplus.zlibrary.core.resources.ZLResource;
 import org.geometerplus.zlibrary.core.filesystem.*;
@@ -33,6 +41,11 @@ import org.geometerplus.zlibrary.text.view.ZLTextWordCursor;
 
 import org.geometerplus.fbreader.bookmodel.BookModel;
 import org.geometerplus.fbreader.library.*;
+//maryhit: again for SDCardCopy
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.res.AssetManager;
+import android.util.Log;
 
 public final class FBReaderApp extends ZLApplication {
 	public final ZLBooleanOption AllowScreenBrightnessAdjustmentOption =
@@ -88,7 +101,7 @@ public final class FBReaderApp extends ZLApplication {
 		new ZLStringOption("Options", "FooterFont", "Droid Sans");
 
 	final ZLStringOption ColorProfileOption =
-		new ZLStringOption("Options", "ColorProfile", ColorProfile.DAY);
+		new ZLStringOption("Options", "ColorProfile", ColorProfile.DAY);//maryhit: here you can chage default to night
 
 	public final ZLBooleanOption ShowPreviousBookInCancelMenuOption =
 		new ZLBooleanOption("CancelMenu", "previousBook", false);
@@ -155,6 +168,145 @@ public final class FBReaderApp extends ZLApplication {
 		});
 	}
 
+	
+	/* MARYHIT COPY FILES TO SDCARD - START */ //maryhit
+	public boolean TestIfCopyIsRequired(Context ctx) {
+		String fileBooksVersion = "/mnt/sdcard/Books/versiune.txt";
+		try {
+			// InputStream in = new FileInputStream(fileBooksVersion);
+
+			String text = ReadSDCardBooksVersionFile(fileBooksVersion);
+			int verFromSDCard = Integer.parseInt(text);
+
+			PackageInfo pinfo = ctx.getPackageManager().getPackageInfo(
+					ctx.getPackageName(), 0);
+			int verFromAPK = pinfo.versionCode;
+
+			if (verFromAPK <= verFromSDCard) { // verFromAPK == verFromSDCard ){
+				// // <=
+				return false;
+			}
+			// verFromAPK=verFromAPK + verFromSDCard;
+			Log.i("Books Versions", "APK: " + Integer.toString(verFromAPK)
+					+ ", on SDCard: " + Integer.toString(verFromSDCard));
+
+		} catch (Exception e) {
+			Log.e("SDCardError", e.getMessage());
+			// TO DO - if SDCard Error, we should return false, because it
+			// doesn't make sense to try to copy.
+		}
+		return true;
+	}
+
+	//
+	String ReadSDCardBooksVersionFile(String f) {
+		StringBuilder text = new StringBuilder();
+		Scanner scanner = null;
+		try {
+			scanner = new Scanner(new FileInputStream(f));// , fEncoding);
+			// while (scanner.hasNextLine()){
+			text.append(scanner.nextLine());
+			// }
+		} catch (Exception e) {
+			Log.e("SDCardError", e.getMessage());
+			text.append("0");
+		} finally {
+			if (scanner != null)
+				scanner.close();
+		}
+
+		return text.toString();
+	}
+/*
+	public void copyBooksToSDCard(Context ctx) {
+		try {
+			if (!TestIfCopyIsRequired(ctx)) {
+				return;
+			}
+			Log.i("copyBooksToSDCard", "Copy Starts Now");
+			copyFileOrDir("", ctx); // no trailing slash / please !!!;
+			Log.i("copyBooksToSDCard", "Copy Ends Now");
+		} catch (Exception ex) {
+			Log.e("copyBooksToSDCard", ex.getMessage());
+		}
+	}*/
+	public void copyBooksToSDCard(final  Context ctx) {
+
+		UIUtil.wait("creatingBooksDatabase", new Runnable() {
+			public void run() {
+				try {
+					if (!TestIfCopyIsRequired(ctx)) {
+						return;
+					}
+					Log.i("copyBooksToSDCard", "Copy Starts Now");
+					copyFileOrDir("", ctx); // no trailing slash / please !!!;
+					Log.i("copyBooksToSDCard", "Copy Ends Now");
+				} catch (Exception ex) {
+					Log.e("copyBooksToSDCard", ex.getMessage());
+				}
+			}
+		}, ctx);
+
+	}
+
+	public void copyFileOrDir(String dataSDCardRelativePath, Context ctx) {
+		AssetManager assetManager = ctx.getAssets();
+
+		String assets[] = null;
+		final String apkSrcAssetsdataSDCardPathRoot = "data/SDCard";
+		String dataRootAssetsRelativePath = apkSrcAssetsdataSDCardPathRoot
+				+ dataSDCardRelativePath;
+		try {
+			assets = assetManager.list(dataRootAssetsRelativePath);
+			if (assets.length == 0) {
+				copyFile(dataSDCardRelativePath, ctx);
+			} else {
+				String fullPath = "/mnt/sdcard/" + dataSDCardRelativePath;
+				File dir = new File(fullPath);
+				if (!dir.exists())
+					if (!dir.mkdir())
+						Log.e("SDCard",
+								"Could not create SDCard folder"
+										+ dir.toString());
+				for (int i = 0; i < assets.length; ++i) {
+					copyFileOrDir(dataSDCardRelativePath + "/" + assets[i], ctx);
+				}
+			}
+		} catch (IOException ex) {
+			Log.e("SDCardCopyError", "I/O Exception", ex);
+		}
+	}
+
+	public void copyFile(String filename, Context ctx) {
+		AssetManager assetManager = ctx.getAssets();
+
+		InputStream in = null;
+		OutputStream out = null;
+
+		final String apkSrcAssetsdataSDCardPathRoot = "data/SDCard";
+		try {
+			in = assetManager.open(apkSrcAssetsdataSDCardPathRoot + filename);
+			String newFileName = "/mnt/sdcard" + filename;
+			out = new FileOutputStream(newFileName);
+
+			byte[] buffer = new byte[1024];
+			int read;
+			while ((read = in.read(buffer)) != -1) {
+				out.write(buffer, 0, read);
+			}
+			in.close();
+			in = null;
+			out.flush();
+			out.close();
+			out = null;
+		} catch (Exception e) {
+			Log.e("tag", e.getMessage());
+		}
+
+	}
+
+	 /* MARYHIT COPY FILES TO SDCARD - END */
+	
 	public void openBook(final Book book, final Bookmark bookmark) {
 		if (book == null) {
 			return;

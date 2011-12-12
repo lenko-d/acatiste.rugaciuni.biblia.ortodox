@@ -54,6 +54,21 @@ apk_save(){
 
 }
 
+return_to_master(){
+	CURRENT_BUILD_BRANCH="master"
+	checkout
+}
+
+show_status(){
+	echo " "
+	echo "`git.cmd branch`"
+	echo "`git.cmd status`"
+}
+
+byebye(){
+	echo "$0 - WORK DONE. Bye"
+}
+
 usage(){
 	echo "Use like this: \n $0 <branch> \n or \n $0 all"
 	echo "Detected branches are: $VALID_BRANCHES"
@@ -87,10 +102,16 @@ case $1 in
 			export CURRENT_BUILD_BRANCH=${B}
 			do_all
 		done
+		return_to_master
+		show_status
+		byebye
 		;;
 	@($VALID_BRANCHES))
 		export CURRENT_BUILD_BRANCH=${1}
 		do_all
+		return_to_master
+		show_status
+		byebye
 		;;
 	*)	echo "ERROR: Invalid branch !"
 		usage

@@ -9,6 +9,10 @@ checkout(){
 	echo "______ CHECKOUT $CURRENT_BUILD_BRANCH .................... -DONE-"
 }
 
+update_version_var(){
+	VERSION=`grep android:versionCode AndroidManifest.xml | sed 's/.*versionCode="//g' | sed 's/".*//g'`
+}
+
 update_versiune_txt(){
 	echo "______ updating versiune.txt ........... -START-"
 	mkdir -p $prj_dir/assets/data/SDCard/Books/
@@ -58,6 +62,7 @@ usage(){
 do_all(){
 	checkout
 	adb kill-server #To ensure the folders are not locked
+	update_version_var #updates $VERSION
 	update_versiune_txt
 	build_any
 	apk_save
@@ -70,7 +75,6 @@ shopt -s extglob  # A must for the case to eval the variable
 prj_dir=/cygdrive/c/_me/android/_epub/workspace/Acatiste_Rugaciuni_Scrieri_Ortodoxe_GIT/git/acatiste.rugaciuni.biblia.ortodox/
 out_dir=/cygdrive/c/_me/android/_KeyStore/
 cd $prj_dir
-VERSION=`grep android:versionCode AndroidManifest.xml | sed 's/.*versionCode="//g' | sed 's/".*//g'`
 all_braches=`git.cmd branch | tr "*" " " | cut -d " " -f 3`
 VALID_BRANCHES=`echo $all_braches | tr " " "|"`
 

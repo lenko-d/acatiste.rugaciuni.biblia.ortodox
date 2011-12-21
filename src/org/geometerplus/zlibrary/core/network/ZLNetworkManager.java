@@ -25,8 +25,7 @@ import java.io.*;
 import java.net.*;
 
 import org.apache.http.*;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.Credentials;
+import org.apache.http.auth.*;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
@@ -41,6 +40,7 @@ import org.apache.http.protocol.BasicHttpContext;
 
 import org.geometerplus.zlibrary.core.util.ZLMiscUtil;
 import org.geometerplus.zlibrary.core.util.ZLNetworkUtil;
+import org.geometerplus.zlibrary.core.options.ZLStringOption;
 
 public class ZLNetworkManager {
 	private static ZLNetworkManager ourManager;
@@ -52,17 +52,63 @@ public class ZLNetworkManager {
 		return ourManager;
 	}
 
-	public static interface CredentialsCreator {
-		Credentials createCredentials(String scheme, AuthScope scope);
+	public static abstract class CredentialsCreator {
+		private volatile String myUsername;
+		private volatile String myPassword;
+
+		synchronized public void setCredentials(String username, String password) {
+			myUsername = username;
+			myPassword = password;
+			release();
+		}
+
+		synchronized public void release() {
+			notifyAll();
+		}
+
+		public Credentials createCredentials(String scheme, AuthScope scope, boolean quietly) {
+			final String authScheme = scope.getScheme();
+			if (!"basic".equalsIgnoreCase(authScheme) &&
+				!"digest".equalsIgnoreCase(authScheme)) {
+				return null;
+			}
+
+			final String host = scope.getHost();
+			final String area = scope.getRealm();
+			final ZLStringOption usernameOption =
+				new ZLStringOption("username", host + ":" + area, "");
+			if (!quietly) {
+				startAuthenticationDialog(host, area, scheme, usernameOption.getValue());
+				synchronized (this) {
+					try {
+						wait();
+					} catch (InterruptedException e) {
+					}
+				}
+			}
+
+			Credentials creds = null;
+			if (myUsername != null && myPassword != null) {
+				usernameOption.setValue(myUsername);
+				creds = new UsernamePasswordCredentials(myUsername, myPassword);
+			}
+			myUsername = null;
+			myPassword = null;
+			return creds;
+		}
+
+		abstract protected void startAuthenticationDialog(String host, String area, String scheme, String username);
 	}
 
-	private CredentialsCreator myCredentialsCreator;
+	private volatile CredentialsCreator myCredentialsCreator;
 
 	private class MyCredentialsProvider extends BasicCredentialsProvider {
 		private final HttpUriRequest myRequest;
+		private final boolean myQuietly;
 
-		MyCredentialsProvider(HttpUriRequest request) {
+		MyCredentialsProvider(HttpUriRequest request, boolean quietly) {
 			myRequest = request;
+			myQuietly = quietly;
 		}
 
 		@Override
@@ -72,7 +118,7 @@ public class ZLNetworkManager {
 				return c;
 			}
 			if (myCredentialsCreator != null) {
-				return myCredentialsCreator.createCredentials(myRequest.getURI().getScheme(), authscope);
+				return myCredentialsCreator.createCredentials(myRequest.getURI().getScheme(), authscope, myQuietly);
 			}
 			return null;
 		}
@@ -172,6 +218,10 @@ public class ZLNetworkManager {
 		myCredentialsCreator = creator;
 	}
 
+	public CredentialsCreator getCredentialsCreator() {
+		return myCredentialsCreator;
+	}
+
 	public void perform(ZLNetworkRequest request) throws ZLNetworkException {
 		boolean success = false;
 		DefaultHttpClient httpClient = null;
@@ -186,7 +236,7 @@ public class ZLNetworkManager {
 			HttpConnectionParams.setConnectionTimeout(params, 15000);
 			httpClient = new DefaultHttpClient(params);
 			final HttpRequestBase httpRequest;
-			if (request.PostData !=  null) {
+			if (request.PostData != null) {
 				httpRequest = new HttpPost(request.URL);
 				((HttpPost)httpRequest).setEntity(new StringEntity(request.PostData, "utf-8"));
 				/*
@@ -195,7 +245,7 @@ public class ZLNetworkManager {
 						Integer.toString(request.PostData.getBytes().length)
 					);
 					httpConnection.setRequestProperty(
-						"Content-Type", 
+						"Content-Type",
 						"application/x-www-form-urlencoded"
 					);
 				*/
@@ -213,7 +263,7 @@ public class ZLNetworkManager {
 			httpRequest.setHeader("User-Agent", ZLNetworkUtil.getUserAgent());
 			httpRequest.setHeader("Accept-Encoding", "gzip");
 			httpRequest.setHeader("Accept-Language", Locale.getDefault().getLanguage());
-			httpClient.setCredentialsProvider(new MyCredentialsProvider(httpRequest));
+			httpClient.setCredentialsProvider(new MyCredentialsProvider(httpRequest, request.isQuiet()));
 			HttpResponse response = null;
 			IOException lastException = null;
 			for (int retryCounter = 0; retryCounter < 3 && entity == null; ++retryCounter) {

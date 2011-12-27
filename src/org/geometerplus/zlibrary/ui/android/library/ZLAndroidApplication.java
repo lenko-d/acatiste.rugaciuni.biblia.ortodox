@@ -20,16 +20,14 @@
 package org.geometerplus.zlibrary.ui.android.library;
 
 import android.app.Application;
-import android.os.Build;
 
-import org.geometerplus.zlibrary.core.options.ZLBooleanOption;
-import org.geometerplus.zlibrary.core.options.ZLIntegerRangeOption;
 import org.geometerplus.zlibrary.core.sqliteconfig.ZLSQLiteConfig;
 
 import org.geometerplus.zlibrary.ui.android.application.ZLAndroidApplicationWindow;
 import org.geometerplus.zlibrary.ui.android.image.ZLAndroidImageManager;
 
 public class ZLAndroidApplication extends Application {
+<<<<<<< HEAD
 	private static ZLAndroidApplication ourApplication;
 
 	public final ZLBooleanOption AutoOrientationOption = new ZLBooleanOption("LookNFeel", "AutoOrientation", true);
@@ -56,6 +54,8 @@ public class ZLAndroidApplication extends Application {
 			"PD_Novel".equals(Build.MODEL);
 	}
 
+=======
+>>>>>>> master
 	public ZLAndroidApplicationWindow myMainWindow;
 
 	@Override

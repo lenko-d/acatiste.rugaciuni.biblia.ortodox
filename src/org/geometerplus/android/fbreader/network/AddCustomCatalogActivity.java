@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2011 Geometer Plus <contact@geometerplus.com>
+ * Copyright (C) 2010-2012 Geometer Plus <contact@geometerplus.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,8 +40,6 @@ import org.geometerplus.fbreader.network.urlInfo.*;
 import org.geometerplus.android.util.UIUtil;
 
 public class AddCustomCatalogActivity extends Activity {
-	public static String EDIT_KEY = "EditNotAdd";
-
 	private ZLResource myResource;
 	private volatile ICustomNetworkLink myLink;
 	private boolean myEditNotAdd;
@@ -89,18 +87,22 @@ public class AddCustomCatalogActivity extends Activity {
 		Util.initLibrary(this);
 
 		final Intent intent = getIntent();
+		final String action = intent.getAction();
+		myEditNotAdd = Util.EDIT_CATALOG_ACTION.equals(action);
 		myLink = null;
-		Uri uri = intent.getData();
-		if (uri != null) {
-			if ("opds".equals(uri.getScheme())) {
-				uri = Uri.parse("http" + uri.toString().substring(4));
-			}
-			final INetworkLink link = NetworkLibrary.Instance().getLinkByUrl(uri.toString());
-			if (link instanceof ICustomNetworkLink) {
-				myLink = (ICustomNetworkLink)link;
+		Uri uri = null;
+		if (myEditNotAdd || Intent.ACTION_VIEW.equals(action)) {
+			uri = intent.getData();
+			if (uri != null) {
+				if ("opds".equals(uri.getScheme())) {
+					uri = Uri.parse("http" + uri.toString().substring(4));
+				}
+				final INetworkLink link = NetworkLibrary.Instance().getLinkByUrl(uri.toString());
+				if (link instanceof ICustomNetworkLink) {
+					myLink = (ICustomNetworkLink)link;
+				}
 			}
 		}
-		myEditNotAdd = intent.getBooleanExtra(EDIT_KEY, false);
 
 		if (myLink != null) {
 			setTextById(R.id.add_custom_catalog_url, myLink.getUrl(UrlInfo.Type.Catalog));
@@ -157,7 +159,7 @@ public class AddCustomCatalogActivity extends Activity {
 				NetworkLibraryActivity.OPEN_CATALOG_ACTION,
 				myEditNotAdd ? null : uri,
 				AddCustomCatalogActivity.this,
-				NetworkLibraryActivity.class
+				NetworkLibraryPrimaryActivity.class
 			).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 			finish();

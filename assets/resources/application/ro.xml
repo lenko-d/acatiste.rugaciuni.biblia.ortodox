@@ -47,7 +47,7 @@
 		<node name="addToFavorites" value="Adauga la favorite"/>
 		<node name="removeFromFavorites" value="Sterge din favorite"/>
 	</node>
-	<node name="networkLibrary" value="Reteaua de biblioteci FBReader">
+	<node name="networkLibrary" value="Reteaua de biblioteci Online">
 		<node name="byAuthor" value="Dupa autor">
 			<node name="summary" value="Carti sortate dupa autor"/>
 		</node>
@@ -685,7 +685,7 @@
 			<node name="register" value="Înscrieti-va"/>
 		</node>
 		<node name="CustomCatalogDialog">
-			<node name="title" value="FBReader: adauga catalog personalizat"/>
+			<node name="title" value="Aplicatie: adauga catalog personalizat"/>
 			<node name="catalogTitle" value="Titlu"/>
 			<node name="catalogUrl" value="URL-ul"/>
 			<node name="catalogSummary" value="Rezumat"/>

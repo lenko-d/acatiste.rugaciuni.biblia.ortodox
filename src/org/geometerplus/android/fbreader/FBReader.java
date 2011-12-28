@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009-2011 Geometer Plus <contact@geometerplus.com>
+ * Copyright (C) 2009-2012 Geometer Plus <contact@geometerplus.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@ import org.geometerplus.zlibrary.text.hyphenation.ZLTextHyphenator;
 import org.geometerplus.zlibrary.ui.android.aplicatii.romanesti.R;
 import org.geometerplus.zlibrary.ui.android.library.ZLAndroidActivity;
 import org.geometerplus.zlibrary.ui.android.library.ZLAndroidApplication;
+import org.geometerplus.zlibrary.ui.android.library.ZLAndroidLibrary;
 
 import org.geometerplus.fbreader.fbreader.ActionCode;
 import org.geometerplus.fbreader.fbreader.FBReaderApp;
@@ -101,9 +102,9 @@ public final class FBReader extends ZLAndroidActivity {
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		final ZLAndroidApplication application = (ZLAndroidApplication)getApplication();
+		final ZLAndroidLibrary zlibrary = (ZLAndroidLibrary)ZLAndroidLibrary.Instance();
 		myFullScreenFlag =
-			application.ShowStatusBarOption.getValue() ? 0 : WindowManager.LayoutParams.FLAG_FULLSCREEN;
+			zlibrary.ShowStatusBarOption.getValue() ? 0 : WindowManager.LayoutParams.FLAG_FULLSCREEN;
 		getWindow().setFlags(
 			WindowManager.LayoutParams.FLAG_FULLSCREEN, myFullScreenFlag
 		);
@@ -141,21 +142,14 @@ public final class FBReader extends ZLAndroidActivity {
 
 		fbReader.addAction(ActionCode.SHOW_CANCEL_MENU, new ShowCancelMenuAction(this, fbReader));
 
-		final TipsManager manager = TipsManager.Instance();
-		if (manager.tipShouldBeShown()) {
-			startActivity(new Intent(this, TipsActivity.class));
-		} else if (manager.tipsShouldBeDownloaded()) {
-			manager.startDownloading();
-		}
-
 		fbReader.copyBooksToSDCard(this); //maryhit:  passing context
 	}
 
  	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		final ZLAndroidApplication application = (ZLAndroidApplication)getApplication();
-		if (!application.ShowStatusBarOption.getValue() &&
-			application.ShowStatusBarWhenMenuIsActiveOption.getValue()) {
+		final ZLAndroidLibrary zlibrary = (ZLAndroidLibrary)ZLAndroidLibrary.Instance();
+		if (!zlibrary.ShowStatusBarOption.getValue() &&
+			zlibrary.ShowStatusBarWhenMenuIsActiveOption.getValue()) {
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 		}
 		return super.onPrepareOptionsMenu(menu);
@@ -164,9 +158,9 @@ public final class FBReader extends ZLAndroidActivity {
 	@Override
 	public void onOptionsMenuClosed(Menu menu) {
 		super.onOptionsMenuClosed(menu);
-		final ZLAndroidApplication application = (ZLAndroidApplication)getApplication();
-		if (!application.ShowStatusBarOption.getValue() &&
-			application.ShowStatusBarWhenMenuIsActiveOption.getValue()) {
+		final ZLAndroidLibrary zlibrary = (ZLAndroidLibrary)ZLAndroidLibrary.Instance();
+		if (!zlibrary.ShowStatusBarOption.getValue() &&
+			zlibrary.ShowStatusBarWhenMenuIsActiveOption.getValue()) {
 			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 		}
 	}
@@ -212,10 +206,10 @@ public final class FBReader extends ZLAndroidActivity {
 	@Override
 	public void onStart() {
 		super.onStart();
-		final ZLAndroidApplication application = (ZLAndroidApplication)getApplication();
+		final ZLAndroidLibrary zlibrary = (ZLAndroidLibrary)ZLAndroidLibrary.Instance();
 
 		final int fullScreenFlag =
-			application.ShowStatusBarOption.getValue() ? 0 : WindowManager.LayoutParams.FLAG_FULLSCREEN;
+			zlibrary.ShowStatusBarOption.getValue() ? 0 : WindowManager.LayoutParams.FLAG_FULLSCREEN;
 		if (fullScreenFlag != myFullScreenFlag) {
 			finish();
 			startActivity(new Intent(this, getClass()));
@@ -244,6 +238,21 @@ public final class FBReader extends ZLAndroidActivity {
 			null,
 			null
 		);
+
+		final TipsManager manager = TipsManager.Instance();
+		switch (manager.requiredAction()) {
+			case Initialize:
+				startActivity(new Intent(TipsActivity.INITIALIZE_ACTION, null, this, TipsActivity.class));
+				break;
+			case Show:
+				startActivity(new Intent(TipsActivity.SHOW_TIP_ACTION, null, this, TipsActivity.class));
+				break;
+			case Download:
+				manager.startDownloading();
+				break;
+			case None:
+				break;
+		}
 	}
 
 	@Override

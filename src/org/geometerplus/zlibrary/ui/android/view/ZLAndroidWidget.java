@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007-2011 Geometer Plus <contact@geometerplus.com>
+ * Copyright (C) 2007-2012 Geometer Plus <contact@geometerplus.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,7 +90,12 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
 			ZLApplication.Instance().onRepaintFinished();
 		}
 
-		setSystemUiVisibility(STATUS_BAR_HIDDEN);
+		final ZLAndroidLibrary zlibrary = (ZLAndroidLibrary)ZLAndroidLibrary.Instance();
+		if (zlibrary.DisableButtonLightsOption.getValue()) {
+			setSystemUiVisibility(STATUS_BAR_HIDDEN);
+		} else {
+			setSystemUiVisibility(STATUS_BAR_VISIBLE);
+		}
 	}
 
 	private AnimationProvider myAnimationProvider;

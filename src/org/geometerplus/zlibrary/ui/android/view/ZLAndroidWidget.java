@@ -89,13 +89,6 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
 			onDrawStatic(canvas);
 			ZLApplication.Instance().onRepaintFinished();
 		}
-
-		final ZLAndroidLibrary zlibrary = (ZLAndroidLibrary)ZLAndroidLibrary.Instance();
-		if (zlibrary.DisableButtonLightsOption.getValue()) {
-			setSystemUiVisibility(STATUS_BAR_HIDDEN);
-		} else {
-			setSystemUiVisibility(STATUS_BAR_VISIBLE);
-		}
 	}
 
 	private AnimationProvider myAnimationProvider;

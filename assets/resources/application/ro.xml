@@ -117,14 +117,14 @@
 		<node name="downloadingCatalogs" value="Descarcare cataloage"/> <!-- used as notification title -->
 		<node name="searchingNetwork" value="Cauta pentru carti în retea"/> <!-- used as notification title -->
 		<node name="addCatalog">
-			<node name="title" value="Add catalog" toBeTranslated="true"/>
-			<node name="editUrl" value="Enter URL manually" toBeTranslated="true"/>
-			<node name="scanLocalNetwork" value="Scan local network" toBeTranslated="true"/>
-			<node name="localCatalogs" value="Local OPDS catalogs" toBeTranslated="true"/>
-			<node name="noCatalogsFound" value="No catalogs found, sorry" toBeTranslated="true"/>
-			<node name="noLocalConnection" value="Your device is not connected to a local network" toBeTranslated="true"/>
-			<node name="wifiIsTurnedOff" value="WiFi is turned off" toBeTranslated="true"/>
-			<node name="turnWiFiOn" value="Please, turn WiFi on and try again" toBeTranslated="true"/>
+			<node name="title" value="Adauga Catalog"/>
+			<node name="editUrl" value="Editeaza URL manual"/>
+			<node name="scanLocalNetwork" value="Cauta in reteaua locala"/>
+			<node name="localCatalogs" value="Cataloage OPDS localte"/>
+			<node name="noCatalogsFound" value="Ne pare rau, nu s-a gasit niciun catalog"/>
+			<node name="noLocalConnection" value="Dispozitivul dumneavoastra nu este conectat la o retea locala"/>
+			<node name="wifiIsTurnedOff" value="WiFi-ul este inchis"/>
+			<node name="turnWiFiOn" value="Va rugam porniti WiFi si reincercati"/>
 		</node>
 		<node name="menu">
 			<node name="networkSearch" value="Reteaua de cautare"/>
@@ -246,6 +246,12 @@
 		</node>
 		<node name="search" value="Cauta"/>
 		<node name="rotate" value="Rotire ecran"/>
+		<node name="screenOrientation" value="Orientarea ecranului"/>
+		<node name="screenOrientationSystem" value="Sistem"/>
+		<node name="screenOrientationPortrait" value="Portret"/>
+		<node name="screenOrientationLandscape" value="Orizontal (Peisaj)"/>
+		<node name="screenOrientationReversePortrait" value="Portret inversat"/>
+		<node name="screenOrientationReverseLandscape" value="Orizontal (Peisaj) inversat"/>
 		<node name="increaseFont" value="Mareste"/>
 		<node name="decreaseFont" value="Micsoreaza"/>
 		<node name="toggleFullscreen" value="Pe intreg ecranul"/>
@@ -268,8 +274,9 @@
 			<node name="pay" value="Plateste"/>
 			<node name="refresh" value="Actualizare"/>
 			<node name="authorize" value="Autorizeaza"/>
-			<node name="rescan" value="Rescan" toBeTranslated="true"/>
-			<node name="turnOn" value="Turn on" toBeTranslated="true"/>
+			<node name="rescan" value="Rescaneaza"/>
+			<node name="turnOn" value="Porneste"/>
+			<node name="resetPosition" value="Reseteaza pozitia"/>
 		</node>
 		<node name="plugin">
 			<node name="installTitle" value="Instalati plugin"/>
@@ -295,6 +302,13 @@
 			</node>
 			<node name="appearance" value="Aspect">
 				<node name="summary" value="Rotire, bara de stare"/>
+				<node name="screenOrientation" value="Orientarea ecranului">
+					<node name="system" value="Sistem"/>
+					<node name="portrait" value="Portret"/>
+					<node name="landscape" value="Orizontal (Peisaj)"/>
+					<node name="reversePortrait" value="Portret inversat"/>
+					<node name="reverseLandscape" value="Orizontal (Peisaj) inversat"/>
+				</node>
 				<node name="autoOrientation" value="Rotire automata">
 					<node name="summaryOn" value="Ecranului se vor roti atunci când utilizatorul misca aparatul"/>
 					<node name="summaryOff" value="Ecranului nu se vor roti atunci când utilizatorul va misca aparatul"/>
@@ -310,6 +324,20 @@
 				<node name="disableButtonLights" value="Dezactiveaza lumina butoanelor hardware în timpul lecturii">
 					<node name="summaryOn" value="Dezactiveaza lumina butonului (nu functioneaza pentru unele dispozitive)"/>
 					<node name="summaryOff" value="Nu dezactivati lumina butonului"/>
+				</node>
+				<node name="allowScreenBrightnessAdjustment" value="Reglarea luminozitatii ecranului">
+					<node name="summaryOn" value="Glisând degetul în sus / jos de-a lungul partii stângi a ecranului"/>
+					<node name="summaryOff" value="Dezactivat"/>
+				</node>
+				<node name="dontTurnScreenOff" value="Împiedicati modul stand-by">
+					<node name="0" value="Mereu"/>
+					<node name="25" value="În timp ce nivelul bateriei este mai mare de 25 la suta"/>
+					<node name="50" value="În timp ce nivelul bateriei este mai mare de 50 la suta"/>
+					<node name="100" value="Niciodata"/>
+				</node>
+				<node name="dontTurnScreenOffDuringCharging" value="Împiedicati modul stand-by în timpul încarcarii">
+					<node name="summaryOn" value="Împiedicati modul stand-by, daca aparatul este în modul de încarcare"/>
+					<node name="summaryOff" value="Inchide ecran, chiar daca aparatul este în modul de încarcare"/>
 				</node>
 			</node>
 			<node name="text" value="Text">
@@ -514,23 +542,6 @@
 				</node>
 				<node name="font" value="Familia de fonturi"/>
 			</node>
-			<node name="display" value="Afisaj">
-				<node name="summary" value="Control luminozitate, previne modul stand-by"/>
-				<node name="allowScreenBrightnessAdjustment" value="Reglarea luminozitatii ecranului">
-					<node name="summaryOn" value="Glisând degetul în sus / jos de-a lungul partii stângi a ecranului"/>
-					<node name="summaryOff" value="Dezactivat"/>
-				</node>
-				<node name="dontTurnScreenOff" value="Împiedicati modul stand-by">
-					<node name="0" value="Mereu"/>
-					<node name="25" value="În timp ce nivelul bateriei este mai mare de 25 la suta"/>
-					<node name="50" value="În timp ce nivelul bateriei este mai mare de 50 la suta"/>
-					<node name="100" value="Niciodata"/>
-				</node>
-				<node name="dontTurnScreenOffDuringCharging" value="Împiedicati modul stand-by în timpul încarcarii">
-					<node name="summaryOn" value="Împiedicati modul stand-by, daca aparatul este în modul de încarcare"/>
-					<node name="summaryOff" value="Inchide ecran, chiar daca aparatul este în modul de încarcare"/>
-				</node>
-			</node>
 			<node name="scrolling" value="Defilare">
 				<node name="summary" value="Cum se face defilarea textului"/>
 				<node name="fingerScrolling" value="Defilare mod touch screen">
@@ -621,11 +632,11 @@
 					<node name="none" value="Nicio actiune"/>
 				</node>
 			</node>
-			<node name="tips" value="Tips" toBeTranslated="true">
-				<node name="summary" value="Daily tips settings" toBeTranslated="true"/>
-				<node name="showTips" value="Show tips" toBeTranslated="true">
-					<node name="summaryOn" value="Show daily tips" toBeTranslated="true"/>
-					<node name="summaryOff" value="Do not show" toBeTranslated="true"/>
+			<node name="tips" value="Sfaturi">
+				<node name="summary" value="Setari sfaturi zilnice"/>
+				<node name="showTips" value="Afiseaza sfaturi">
+					<node name="summaryOn" value="Afiseaza sfaturi zilnice"/>
+					<node name="summaryOff" value="Nu afisa"/>
 				</node>
 			</node>
 		</node>
@@ -661,7 +672,7 @@
 			<node name="loadingNetworkBookInfo" value="Se incarca informatii despre carte. Va rugam asteptati &#8230;"/>
 			<node name="updatingCatalogsList" value="Actualizare lista de cataloage. Va rugam asteptati&#8230;"/>
 			<node name="updatingAccountInformation" value="Se actualizeaza detaliile contului. Va rugam asteptati&#8230;"/>
-			<node name="scanningLocalNetwork" value="Scanning local network. Please, wait&#8230;" toBeTranslated="true"/>
+			<node name="scanningLocalNetwork" value="Se scaneaza reteaua locala.Va rugam asteptati&#8230;"/>
 		</node>
 		<node name="networkError">
 			<node name="internalError" value="Eroare interna la server"/>
@@ -702,10 +713,10 @@
 			<node name="title" value="Filtreaza limba"/>
 		</node>
 		<node name="tips">
-			<node name="title" value="Tip of the day" toBeTranslated="true" />
-			<node name="initializationText" value="Would you like to read FBReader daily tips? New tips would be downloaded from FBReader site. Expected network traffic is 1-2 kilobytes per week.&#10;&#10;Enable tips?" toBeTranslated="true"/>
-			<node name="dontShowAgain" value="Don't show again" toBeTranslated="true"/>
-			<node name="more" value="Next tip" toBeTranslated="true"/>
+			<node name="title" value="Sfatul zilei"/>
+			<node name="initializationText" value="Doriti sa cititi zilnic sfaturi despre folosirea aplicatiei? Noile sfaturi sunt descarcate de pe site-ul aplicatiei. Se estimeaza un trafic de 1-2 kilobytes pe saptamana.&#10;&#10;Sa activeaz sfaturile?"/>
+			<node name="dontShowAgain" value="Nu-l mai repeta"/>
+			<node name="more" value="Urmatorul sfat"/>
 		</node>
 	</node>
 	<node name="errorMessage">
@@ -736,8 +747,8 @@
 			<node name="text" value="Directorul de cache nu este accesibil pentru scriere. Poate ati uitat sa inserati sau montati cartela de memorie. Va rugam sa corectati aceasta problema sau introduceti un alt nume de director de mai jos."/>
 		</node>
 		<node name="missingNativeLibrary">
-			<node name="title" value="FBReader issue" toBeTranslated="true"/>
-			<node name="text" value="FBReader can not load native library. May be it is not properly installed. If the issue persists please try to reinstall FBReader." toBeTranslated="true"/>
+			<node name="title" value="Problema in aplicatie"/>
+			<node name="text" value="Aplicatia nu gaseste librariile native. Poate nu a fost instalata corect. Daca erorare persista, va rugam reinstalati aplicatia"/>
 		</node>
 	</node>
 </resources>

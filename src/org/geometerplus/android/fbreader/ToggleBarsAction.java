@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009-2012 Geometer Plus <contact@geometerplus.com>
+ * Copyright (C) 2007-2012 Geometer Plus <contact@geometerplus.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,21 @@
  * 02110-1301, USA.
  */
 
-package org.geometerplus.android.fbreader.preferences;
+package org.geometerplus.android.fbreader;
 
-interface ZLPreference {
-	void onAccept();
+import org.geometerplus.fbreader.fbreader.FBReaderApp;
+
+class ToggleBarsAction extends FBAndroidAction {
+	ToggleBarsAction(FBReader baseActivity, FBReaderApp fbreader) {
+		super(baseActivity, fbreader);
+	}
+
+	@Override
+	protected void run(Object ... params) {
+		if (BaseActivity.barsAreShown()) {
+			BaseActivity.hideBars();
+		} else {
+			BaseActivity.showBars();
+		}
+	}
 }

@@ -21,6 +21,7 @@ package org.geometerplus.fbreader.fbreader;
 
 public interface ActionCode {
 	String SHOW_LIBRARY = "library";
+	String SHOW_LIBRARY_SDCARD = "library_sdcard";
 	String SHOW_PREFERENCES = "preferences";
 	String SHOW_BOOK_INFO = "bookInfo";
 	String SHOW_TOC = "toc";

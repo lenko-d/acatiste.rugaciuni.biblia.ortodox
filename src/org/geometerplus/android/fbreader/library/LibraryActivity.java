@@ -44,6 +44,7 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 	static volatile boolean ourToBeKilled = false;
 
 	public static final String SELECTED_BOOK_PATH_KEY = "SelectedBookPath";
+	public static final String START_SEARCH_IMMEDIATELY = "START_SEARCH_IMMEDIATELY";
 
 	private BooksDatabase myDatabase;
 	private Library myLibrary;
@@ -322,5 +323,14 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 				}
 			}
 		});
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		String startSearch = getIntent().getStringExtra(START_SEARCH_IMMEDIATELY);
+		if ("true".equalsIgnoreCase(startSearch)){
+			startSearch("", false, null, false);
+		}
 	}
 }

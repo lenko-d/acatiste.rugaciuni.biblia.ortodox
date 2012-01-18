@@ -227,24 +227,25 @@
 	</node>
 	<node name="menu">
 		<node name="preferences" value="Setari"/>
-		<node name="bookInfo" value="Informatii despre carte"/>
-		<node name="library" value="Biblioteca"/>
+		<node name="library_sdcard" value="Carti Rugaciuni"/>
+		<node name="bookInfo" value="Informatii carte"/>
+		<node name="library" value="Carti pe categorii"/>
 		<node name="toc" value="Cuprins"/>
 		<node name="day" value="Mod Zi"/>
 		<node name="night" value="Mod Noapte"/>
-		<node name="networkLibrary" value="Biblioteca din retea"/>
+		<node name="networkLibrary" value="Carti Online"/>
 		<node name="navigate" value="Navigati">
 			<node name="toc" value="Cuprins"/>
-			<node name="gotoHome" value="Du-te la Start a documentului"/>
-			<node name="gotoPageNumber" value="Du-te la pagina&#8230;"/>
-			<node name="gotoSectionStart" value="Du-te la Inceputul textului"/>
-			<node name="gotoSectionEnd" value="Du-te la Sfârsitul textului"/>
-			<node name="nextTOCSection" value="Du-te la urmatoarea intrare din cuprins"/>
-			<node name="previousTOCSection" value="Du-te la urmatoarea anterioara din cuprins"/>
+			<node name="gotoHome" value="Mergi la inceputul a documentului"/>
+			<node name="gotoPageNumber" value="Mergi la pagina&#8230;"/>
+			<node name="gotoSectionStart" value="Mergi la inceputul textului"/>
+			<node name="gotoSectionEnd" value="Mergi la sfârsitul textului"/>
+			<node name="nextTOCSection" value="Mergi la urmatoarea intrare din cuprins"/>
+			<node name="previousTOCSection" value="Mergi la intrarea anterioara din cuprins"/>
 			<node name="undo" value="Mergeti înapoi"/>
 			<node name="redo" value="Mergeti înainte"/>
 		</node>
-		<node name="search" value="Cauta"/>
+		<node name="search" value="Cauta in carte"/>
 		<node name="rotate" value="Rotire ecran"/>
 		<node name="screenOrientation" value="Orientarea ecranului"/>
 		<node name="screenOrientationSystem" value="Sistem"/>

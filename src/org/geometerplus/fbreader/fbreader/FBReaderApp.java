@@ -18,8 +18,9 @@
  */
 
 package org.geometerplus.fbreader.fbreader;
+
 //maryhit imports for SDCardCopy methods
-import java.io.File; 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import java.io.OutputStream;
 //maryhit: end imports for SDCardCopy methods
 import java.util.*;
 
+import org.geometerplus.android.fbreader.library.*;//maryhit for DB & Lib index init
 import org.geometerplus.android.util.UIUtil;
 import org.geometerplus.zlibrary.core.library.ZLibrary;
 import org.geometerplus.zlibrary.core.resources.ZLResource;
@@ -49,65 +51,69 @@ import android.content.res.AssetManager;
 import android.util.Log;
 
 public final class FBReaderApp extends ZLApplication {
-	public final ZLBooleanOption AllowScreenBrightnessAdjustmentOption =
-		new ZLBooleanOption("LookNFeel", "AllowScreenBrightnessAdjustment", true);
-	public final ZLStringOption TextSearchPatternOption =
-		new ZLStringOption("TextSearch", "Pattern", "");
+	public final ZLBooleanOption AllowScreenBrightnessAdjustmentOption = new ZLBooleanOption(
+			"LookNFeel", "AllowScreenBrightnessAdjustment", true);
+	public final ZLStringOption TextSearchPatternOption = new ZLStringOption(
+			"TextSearch", "Pattern", "");
 
-	public final ZLBooleanOption UseSeparateBindingsOption =
-		new ZLBooleanOption("KeysOptions", "UseSeparateBindings", false);
+	public final ZLBooleanOption UseSeparateBindingsOption = new ZLBooleanOption(
+			"KeysOptions", "UseSeparateBindings", false);
 
-	public final ZLBooleanOption EnableDoubleTapOption =
-		new ZLBooleanOption("Options", "EnableDoubleTap", false);
-	public final ZLBooleanOption NavigateAllWordsOption =
-		new ZLBooleanOption("Options", "NavigateAllWords", false);
+	public final ZLBooleanOption EnableDoubleTapOption = new ZLBooleanOption(
+			"Options", "EnableDoubleTap", false);
+	public final ZLBooleanOption NavigateAllWordsOption = new ZLBooleanOption(
+			"Options", "NavigateAllWords", false);
 
 	public static enum WordTappingAction {
 		doNothing, selectSingleWord, startSelecting, openDictionary
 	}
-	public final ZLEnumOption<WordTappingAction> WordTappingActionOption =
-		new ZLEnumOption<WordTappingAction>("Options", "WordTappingAction", WordTappingAction.startSelecting);
 
-	public final ZLColorOption ImageViewBackgroundOption =
-		new ZLColorOption("Colors", "ImageViewBackground", new ZLColor(127, 127, 127));
+	public final ZLEnumOption<WordTappingAction> WordTappingActionOption = new ZLEnumOption<WordTappingAction>(
+			"Options", "WordTappingAction", WordTappingAction.startSelecting);
+
+	public final ZLColorOption ImageViewBackgroundOption = new ZLColorOption(
+			"Colors", "ImageViewBackground", new ZLColor(127, 127, 127));
+
 	public static enum ImageTappingAction {
 		doNothing, selectImage, openImageView
 	}
-	public final ZLEnumOption<ImageTappingAction> ImageTappingActionOption =
-		new ZLEnumOption<ImageTappingAction>("Options", "ImageTappingAction", ImageTappingAction.openImageView);
+
+	public final ZLEnumOption<ImageTappingAction> ImageTappingActionOption = new ZLEnumOption<ImageTappingAction>(
+			"Options", "ImageTappingAction", ImageTappingAction.openImageView);
 
 	private final int myDpi = ZLibrary.Instance().getDisplayDPI();
-	public final ZLIntegerRangeOption LeftMarginOption =
-		new ZLIntegerRangeOption("Options", "LeftMargin", 0, 30, myDpi / 20);
-	public final ZLIntegerRangeOption RightMarginOption =
-		new ZLIntegerRangeOption("Options", "RightMargin", 0, 30, myDpi / 20);
-	public final ZLIntegerRangeOption TopMarginOption =
-		new ZLIntegerRangeOption("Options", "TopMargin", 0, 30, 0);
-	public final ZLIntegerRangeOption BottomMarginOption =
-		new ZLIntegerRangeOption("Options", "BottomMargin", 0, 30, 4);
+	public final ZLIntegerRangeOption LeftMarginOption = new ZLIntegerRangeOption(
+			"Options", "LeftMargin", 0, 30, myDpi / 20);
+	public final ZLIntegerRangeOption RightMarginOption = new ZLIntegerRangeOption(
+			"Options", "RightMargin", 0, 30, myDpi / 20);
+	public final ZLIntegerRangeOption TopMarginOption = new ZLIntegerRangeOption(
+			"Options", "TopMargin", 0, 30, 0);
+	public final ZLIntegerRangeOption BottomMarginOption = new ZLIntegerRangeOption(
+			"Options", "BottomMargin", 0, 30, 4);
 
-	public final ZLIntegerRangeOption ScrollbarTypeOption =
-		new ZLIntegerRangeOption("Options", "ScrollbarType", 0, 3, FBView.SCROLLBAR_SHOW_AS_FOOTER);
-	public final ZLIntegerRangeOption FooterHeightOption =
-		new ZLIntegerRangeOption("Options", "FooterHeight", 8, 20, 9);
-	public final ZLBooleanOption FooterShowTOCMarksOption =
-		new ZLBooleanOption("Options", "FooterShowTOCMarks", true);
-	public final ZLBooleanOption FooterShowClockOption =
-		new ZLBooleanOption("Options", "ShowClockInFooter", true);
-	public final ZLBooleanOption FooterShowBatteryOption =
-		new ZLBooleanOption("Options", "ShowBatteryInFooter", true);
-	public final ZLBooleanOption FooterShowProgressOption =
-		new ZLBooleanOption("Options", "ShowProgressInFooter", true);
-	public final ZLStringOption FooterFontOption =
-		new ZLStringOption("Options", "FooterFont", "Droid Sans");
+	public final ZLIntegerRangeOption ScrollbarTypeOption = new ZLIntegerRangeOption(
+			"Options", "ScrollbarType", 0, 3, FBView.SCROLLBAR_SHOW_AS_FOOTER);
+	public final ZLIntegerRangeOption FooterHeightOption = new ZLIntegerRangeOption(
+			"Options", "FooterHeight", 8, 20, 9);
+	public final ZLBooleanOption FooterShowTOCMarksOption = new ZLBooleanOption(
+			"Options", "FooterShowTOCMarks", true);
+	public final ZLBooleanOption FooterShowClockOption = new ZLBooleanOption(
+			"Options", "ShowClockInFooter", true);
+	public final ZLBooleanOption FooterShowBatteryOption = new ZLBooleanOption(
+			"Options", "ShowBatteryInFooter", true);
+	public final ZLBooleanOption FooterShowProgressOption = new ZLBooleanOption(
+			"Options", "ShowProgressInFooter", true);
+	public final ZLStringOption FooterFontOption = new ZLStringOption(
+			"Options", "FooterFont", "Droid Sans");
 
-	final ZLStringOption ColorProfileOption =
-		new ZLStringOption("Options", "ColorProfile", ColorProfile.DAY);//maryhit: here you can chage default to night
+	final ZLStringOption ColorProfileOption = new ZLStringOption("Options",
+			"ColorProfile", ColorProfile.DAY);// maryhit: here you can chage
+												// default to night
 
-	public final ZLBooleanOption ShowPreviousBookInCancelMenuOption =
-		new ZLBooleanOption("CancelMenu", "previousBook", false);
-	public final ZLBooleanOption ShowPositionsInCancelMenuOption =
-		new ZLBooleanOption("CancelMenu", "positions", true);
+	public final ZLBooleanOption ShowPreviousBookInCancelMenuOption = new ZLBooleanOption(
+			"CancelMenu", "previousBook", false);
+	public final ZLBooleanOption ShowPositionsInCancelMenuOption = new ZLBooleanOption(
+			"CancelMenu", "positions", true);
 
 	private final ZLKeyBindings myBindings = new ZLKeyBindings("Keys");
 
@@ -126,23 +132,32 @@ public final class FBReaderApp extends ZLApplication {
 
 		addAction(ActionCode.FIND_NEXT, new FindNextAction(this));
 		addAction(ActionCode.FIND_PREVIOUS, new FindPreviousAction(this));
-		addAction(ActionCode.CLEAR_FIND_RESULTS, new ClearFindResultsAction(this));
+		addAction(ActionCode.CLEAR_FIND_RESULTS, new ClearFindResultsAction(
+				this));
 
 		addAction(ActionCode.SELECTION_CLEAR, new SelectionClearAction(this));
 
 		addAction(ActionCode.TURN_PAGE_FORWARD, new TurnPageAction(this, true));
 		addAction(ActionCode.TURN_PAGE_BACK, new TurnPageAction(this, false));
 
-		addAction(ActionCode.MOVE_CURSOR_UP, new MoveCursorAction(this, FBView.Direction.up));
-		addAction(ActionCode.MOVE_CURSOR_DOWN, new MoveCursorAction(this, FBView.Direction.down));
-		addAction(ActionCode.MOVE_CURSOR_LEFT, new MoveCursorAction(this, FBView.Direction.rightToLeft));
-		addAction(ActionCode.MOVE_CURSOR_RIGHT, new MoveCursorAction(this, FBView.Direction.leftToRight));
+		addAction(ActionCode.MOVE_CURSOR_UP, new MoveCursorAction(this,
+				FBView.Direction.up));
+		addAction(ActionCode.MOVE_CURSOR_DOWN, new MoveCursorAction(this,
+				FBView.Direction.down));
+		addAction(ActionCode.MOVE_CURSOR_LEFT, new MoveCursorAction(this,
+				FBView.Direction.rightToLeft));
+		addAction(ActionCode.MOVE_CURSOR_RIGHT, new MoveCursorAction(this,
+				FBView.Direction.leftToRight));
 
-		addAction(ActionCode.VOLUME_KEY_SCROLL_FORWARD, new VolumeKeyTurnPageAction(this, true));
-		addAction(ActionCode.VOLUME_KEY_SCROLL_BACK, new VolumeKeyTurnPageAction(this, false));
+		addAction(ActionCode.VOLUME_KEY_SCROLL_FORWARD,
+				new VolumeKeyTurnPageAction(this, true));
+		addAction(ActionCode.VOLUME_KEY_SCROLL_BACK,
+				new VolumeKeyTurnPageAction(this, false));
 
-		addAction(ActionCode.SWITCH_TO_DAY_PROFILE, new SwitchProfileAction(this, ColorProfile.DAY));
-		addAction(ActionCode.SWITCH_TO_NIGHT_PROFILE, new SwitchProfileAction(this, ColorProfile.NIGHT));
+		addAction(ActionCode.SWITCH_TO_DAY_PROFILE, new SwitchProfileAction(
+				this, ColorProfile.DAY));
+		addAction(ActionCode.SWITCH_TO_NIGHT_PROFILE, new SwitchProfileAction(
+				this, ColorProfile.NIGHT));
 
 		addAction(ActionCode.EXIT, new ExitAction(this));
 
@@ -168,8 +183,7 @@ public final class FBReaderApp extends ZLApplication {
 		});
 	}
 
-	
-	/* MARYHIT COPY FILES TO SDCARD - START */ //maryhit
+	/* MARYHIT COPY FILES TO SDCARD - START */// maryhit
 	public boolean TestIfCopyIsRequired(Context ctx) {
 		String fileBooksVersion = "/mnt/sdcard/Books/versiune.txt";
 		try {
@@ -217,20 +231,15 @@ public final class FBReaderApp extends ZLApplication {
 
 		return text.toString();
 	}
-/*
-	public void copyBooksToSDCard(Context ctx) {
-		try {
-			if (!TestIfCopyIsRequired(ctx)) {
-				return;
-			}
-			Log.i("copyBooksToSDCard", "Copy Starts Now");
-			copyFileOrDir("", ctx); // no trailing slash / please !!!;
-			Log.i("copyBooksToSDCard", "Copy Ends Now");
-		} catch (Exception ex) {
-			Log.e("copyBooksToSDCard", ex.getMessage());
-		}
-	}*/
-	public void copyBooksToSDCard(final  Context ctx) {
+
+	/*
+	 * public void copyBooksToSDCard(Context ctx) { try { if
+	 * (!TestIfCopyIsRequired(ctx)) { return; } Log.i("copyBooksToSDCard",
+	 * "Copy Starts Now"); copyFileOrDir("", ctx); // no trailing slash / please
+	 * !!!; Log.i("copyBooksToSDCard", "Copy Ends Now"); } catch (Exception ex)
+	 * { Log.e("copyBooksToSDCard", ex.getMessage()); } }
+	 */
+	public void copyBooksToSDCard(final Context ctx) {
 
 		UIUtil.wait("creatingBooksDatabase", new Runnable() {
 			public void run() {
@@ -241,6 +250,8 @@ public final class FBReaderApp extends ZLApplication {
 					Log.i("copyBooksToSDCard", "Copy Starts Now");
 					copyFileOrDir("", ctx); // no trailing slash / please !!!;
 					Log.i("copyBooksToSDCard", "Copy Ends Now");
+					initDbAndLibraryIndex(ctx);
+					Log.i("initDbAndLibraryIndex", "Index Called");
 				} catch (Exception ex) {
 					Log.e("copyBooksToSDCard", ex.getMessage());
 				}
@@ -305,14 +316,26 @@ public final class FBReaderApp extends ZLApplication {
 
 	}
 
-	 /* MARYHIT COPY FILES TO SDCARD - END */
-	
+	void initDbAndLibraryIndex(Context ctx) {
+
+		BooksDatabase myDatabase = SQLiteBooksDatabase.Instance();
+		if (myDatabase == null) {
+			myDatabase = new SQLiteBooksDatabase(ctx, "LIBRARY");
+		}
+		Library myLibrary = Library.Instance();
+		myLibrary.startBuild();
+
+	}
+
+	/* MARYHIT COPY FILES TO SDCARD - END */
+
 	public void openBook(final Book book, final Bookmark bookmark) {
 		if (book == null) {
 			return;
 		}
 		if (Model != null) {
-			if (bookmark == null & book.File.getPath().equals(Model.Book.File.getPath())) {
+			if (bookmark == null
+					& book.File.getPath().equals(Model.Book.File.getPath())) {
 				return;
 			}
 		}
@@ -346,7 +369,7 @@ public final class FBReaderApp extends ZLApplication {
 	}
 
 	public FBView getTextView() {
-		return (FBView)getCurrentView();
+		return (FBView) getCurrentView();
 	}
 
 	public void tryOpenFootnote(String id) {
@@ -357,7 +380,8 @@ public final class FBReaderApp extends ZLApplication {
 				if (label.ModelId == null) {
 					BookTextView.gotoPosition(label.ParagraphIndex, 0, 0);
 				} else {
-					FootnoteView.setModel(Model.getFootnoteModel(label.ModelId));
+					FootnoteView
+							.setModel(Model.getFootnoteModel(label.ModelId));
 					setView(FootnoteView);
 					FootnoteView.gotoPosition(label.ParagraphIndex, 0, 0);
 				}
@@ -466,9 +490,7 @@ public final class FBReaderApp extends ZLApplication {
 	}
 
 	static enum CancelActionType {
-		previousBook,
-		returnTo,
-		close
+		previousBook, returnTo, close
 	}
 
 	public static class CancelActionDescription {
@@ -486,36 +508,36 @@ public final class FBReaderApp extends ZLApplication {
 
 	private static class BookmarkDescription extends CancelActionDescription {
 		final Bookmark Bookmark;
-		
+
 		BookmarkDescription(Bookmark b) {
 			super(CancelActionType.returnTo, b.getText());
 			Bookmark = b;
 		}
 	}
 
-	private final ArrayList<CancelActionDescription> myCancelActionsList =
-		new ArrayList<CancelActionDescription>();
+	private final ArrayList<CancelActionDescription> myCancelActionsList = new ArrayList<CancelActionDescription>();
 
 	public List<CancelActionDescription> getCancelActionsList() {
 		myCancelActionsList.clear();
 		if (ShowPreviousBookInCancelMenuOption.getValue()) {
 			final Book previousBook = Library.getPreviousBook();
 			if (previousBook != null) {
-				myCancelActionsList.add(new CancelActionDescription(
-					CancelActionType.previousBook, previousBook.getTitle()
-				));
+				myCancelActionsList
+						.add(new CancelActionDescription(
+								CancelActionType.previousBook, previousBook
+										.getTitle()));
 			}
 		}
 		if (ShowPositionsInCancelMenuOption.getValue()) {
 			if (Model != null && Model.Book != null) {
-				for (Bookmark bookmark : Bookmark.invisibleBookmarks(Model.Book)) {
+				for (Bookmark bookmark : Bookmark
+						.invisibleBookmarks(Model.Book)) {
 					myCancelActionsList.add(new BookmarkDescription(bookmark));
 				}
 			}
 		}
 		myCancelActionsList.add(new CancelActionDescription(
-			CancelActionType.close, null
-		));
+				CancelActionType.close, null));
 		return myCancelActionsList;
 	}
 
@@ -524,21 +546,21 @@ public final class FBReaderApp extends ZLApplication {
 			return;
 		}
 
-		final CancelActionDescription description = myCancelActionsList.get(index);
+		final CancelActionDescription description = myCancelActionsList
+				.get(index);
 		switch (description.Type) {
-			case previousBook:
-				openBook(Library.getPreviousBook(), null);
-				break;
-			case returnTo:
-			{
-				final Bookmark b = ((BookmarkDescription)description).Bookmark;
-				b.delete();
-				gotoBookmark(b);
-				break;
-			}
-			case close:
-				closeWindow();
-				break;
+		case previousBook:
+			openBook(Library.getPreviousBook(), null);
+			break;
+		case returnTo: {
+			final Bookmark b = ((BookmarkDescription) description).Bookmark;
+			b.delete();
+			gotoBookmark(b);
+			break;
+		}
+		case close:
+			closeWindow();
+			break;
 		}
 	}
 
@@ -550,7 +572,8 @@ public final class FBReaderApp extends ZLApplication {
 				}
 			}
 			b.save();
-			final List<Bookmark> bookmarks = Bookmark.invisibleBookmarks(Model.Book);
+			final List<Bookmark> bookmarks = Bookmark
+					.invisibleBookmarks(Model.Book);
 			for (int i = 3; i < bookmarks.size(); ++i) {
 				bookmarks.get(i).delete();
 			}
@@ -558,14 +581,10 @@ public final class FBReaderApp extends ZLApplication {
 	}
 
 	public void addInvisibleBookmark(ZLTextWordCursor cursor) {
-		if (cursor != null && Model != null && Model.Book != null && getTextView() == BookTextView) {
-			updateInvisibleBookmarksList(new Bookmark(
-				Model.Book,
-				getTextView().getModel().getId(),
-				cursor,
-				6,
-				false
-			));
+		if (cursor != null && Model != null && Model.Book != null
+				&& getTextView() == BookTextView) {
+			updateInvisibleBookmarksList(new Bookmark(Model.Book, getTextView()
+					.getModel().getId(), cursor, 6, false));
 		}
 	}
 
@@ -583,13 +602,8 @@ public final class FBReaderApp extends ZLApplication {
 			return null;
 		}
 
-		return new Bookmark(
-			Model.Book,
-			view.getModel().getId(),
-			cursor,
-			maxLength,
-			visible
-		);
+		return new Bookmark(Model.Book, view.getModel().getId(), cursor,
+				maxLength, visible);
 	}
 
 	public TOCTree getCurrentTOCElement() {
@@ -598,7 +612,7 @@ public final class FBReaderApp extends ZLApplication {
 			return null;
 		}
 
-		int index = cursor.getParagraphIndex();	
+		int index = cursor.getParagraphIndex();
 		if (cursor.isEndOfParagraph()) {
 			++index;
 		}

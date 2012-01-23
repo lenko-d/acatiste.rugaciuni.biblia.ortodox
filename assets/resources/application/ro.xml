@@ -632,7 +632,7 @@
 					<node name="goBack" value="Navigati înapoi"/>
 					<node name="cancelMenu" value="Arata  meniul de anulare"/>
 				</node>
-				<node name="backKeyLongPressAction" value="Apasarea lunga tasta inapoi">
+				<node name="backKeyLongPressAction" value="Apasare lunga tasta inapoi">
 					<node name="exit" value="Inchide Aplicatia"/>
 					<node name="goBack" value="Navigati înapoi"/>
 					<node name="cancelMenu" value="Arata meniul de anulare"/>

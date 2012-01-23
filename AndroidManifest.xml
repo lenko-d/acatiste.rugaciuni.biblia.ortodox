@@ -8,8 +8,8 @@
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 	<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-	<application android:name="org.geometerplus.zlibrary.ui.android.library.ZLAndroidApplication" android:icon="@drawable/fbreader" android:label="FBReader">
-		<activity android:name=".library.BugReportActivity" android:label="FBReader crash" android:configChanges="orientation|keyboardHidden|screenSize" android:process=":crash" />
+	<application android:name="org.geometerplus.zlibrary.ui.android.library.ZLAndroidApplication" android:icon="@drawable/fbreader" android:label="@string/AppLabel">
+		<activity android:name="org.geometerplus.zlibrary.ui.android.library.BugReportActivity" android:label="FBReader crash" android:configChanges="orientation|keyboardHidden|screenSize" android:process=":crash" />
 		<activity android:name="org.geometerplus.android.fbreader.crash.FixBooksDirectoryActivity" android:theme="@android:style/Theme.Dialog" android:configChanges="orientation|keyboardHidden|screenSize" android:process=":crash">
 			<intent-filter>
 				<action android:name="android.fbreader.action.CRASH" />
@@ -211,5 +211,7 @@
 			</intent-filter>
 		</receiver>
 		<activity android:name="org.geometerplus.android.fbreader.tips.TipsActivity" android:configChanges="orientation|keyboardHidden|screenSize" android:theme="@android:style/Theme.Dialog"/>
+		<provider android:name="org.nicolae.test.BookSearchHintProvider"
+                  android:authorities="org.nicolae.test.BookSearchHintProvider" />
 	</application>
 </manifest>

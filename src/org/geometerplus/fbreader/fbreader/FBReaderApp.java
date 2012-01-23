@@ -28,6 +28,7 @@ import java.io.OutputStream;
 //maryhit: end imports for SDCardCopy methods
 import java.util.*;
 
+import org.geometerplus.android.fbreader.library.*;//maryhit for DB & Lib index init
 import org.geometerplus.android.util.UIUtil;
 import org.geometerplus.zlibrary.core.library.ZLibrary;
 import org.geometerplus.zlibrary.core.resources.ZLResource;
@@ -78,13 +79,13 @@ public final class FBReaderApp extends ZLApplication {
 
 	private final int myDpi = ZLibrary.Instance().getDisplayDPI();
 	public final ZLIntegerRangeOption LeftMarginOption =
-		new ZLIntegerRangeOption("Options", "LeftMargin", 0, 30, myDpi / 5);
+		new ZLIntegerRangeOption("Options", "LeftMargin", 0, 30, myDpi / 20);
 	public final ZLIntegerRangeOption RightMarginOption =
-		new ZLIntegerRangeOption("Options", "RightMargin", 0, 30, myDpi / 5);
+		new ZLIntegerRangeOption("Options", "RightMargin", 0, 30, myDpi / 20);
 	public final ZLIntegerRangeOption TopMarginOption =
-		new ZLIntegerRangeOption("Options", "TopMargin", 0, 60, 15);
+		new ZLIntegerRangeOption("Options", "TopMargin", 0, 30, 0);
 	public final ZLIntegerRangeOption BottomMarginOption =
-		new ZLIntegerRangeOption("Options", "BottomMargin", 0, 60, 20);
+		new ZLIntegerRangeOption("Options", "BottomMargin", 0, 30, 4);
 
 	public final ZLIntegerRangeOption ScrollbarTypeOption =
 		new ZLIntegerRangeOption("Options", "ScrollbarType", 0, 3, FBView.SCROLLBAR_SHOW_AS_FOOTER);
@@ -241,6 +242,8 @@ public final class FBReaderApp extends ZLApplication {
 					Log.i("copyBooksToSDCard", "Copy Starts Now");
 					copyFileOrDir("", ctx); // no trailing slash / please !!!;
 					Log.i("copyBooksToSDCard", "Copy Ends Now");
+					initDbAndLibraryIndex(ctx);
+					Log.i("initDbAndLibraryIndex", "Index Called");
 				} catch (Exception ex) {
 					Log.e("copyBooksToSDCard", ex.getMessage());
 				}
@@ -305,8 +308,19 @@ public final class FBReaderApp extends ZLApplication {
 
 	}
 
-	 /* MARYHIT COPY FILES TO SDCARD - END */
-	
+	void initDbAndLibraryIndex(Context ctx) {
+
+		BooksDatabase myDatabase = SQLiteBooksDatabase.Instance();
+		if (myDatabase == null) {
+			myDatabase = new SQLiteBooksDatabase(ctx, "LIBRARY");
+		}
+		Library myLibrary = Library.Instance();
+		myLibrary.startBuild();
+
+	}
+
+	/* MARYHIT COPY FILES TO SDCARD - END */
+
 	public void openBook(final Book book, final Bookmark bookmark) {
 		if (book == null) {
 			return;

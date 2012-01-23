@@ -19,8 +19,16 @@
 
 package org.geometerplus.fbreader.fbreader;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.*;
 
+import org.geometerplus.android.fbreader.library.*;//maryhit for DB & Lib index init
+import org.geometerplus.android.util.UIUtil;
 import org.geometerplus.zlibrary.core.library.ZLibrary;
 import org.geometerplus.zlibrary.core.resources.ZLResource;
 import org.geometerplus.zlibrary.core.filesystem.*;
@@ -34,6 +42,10 @@ import org.geometerplus.zlibrary.text.view.ZLTextWordCursor;
 import org.geometerplus.fbreader.bookmodel.BookModel;
 import org.geometerplus.fbreader.bookmodel.TOCTree;
 import org.geometerplus.fbreader.library.*;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.res.AssetManager;
+import android.util.Log;
 
 public final class FBReaderApp extends ZLApplication {
 	public final ZLBooleanOption AllowScreenBrightnessAdjustmentOption =

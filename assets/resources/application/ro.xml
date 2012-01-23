@@ -249,6 +249,7 @@
 		<node name="rotate" value="Rotire ecran"/>
 		<node name="screenOrientation" value="Orientarea ecranului"/>
 		<node name="screenOrientationSystem" value="Sistem"/>
+		<node name="screenOrientationSensor" value="In functie de orientarea dispozitivului"/>
 		<node name="screenOrientationPortrait" value="Portret"/>
 		<node name="screenOrientationLandscape" value="Orizontal (Peisaj)"/>
 		<node name="screenOrientationReversePortrait" value="Portret inversat"/>
@@ -305,6 +306,7 @@
 				<node name="summary" value="Rotire, bara de stare"/>
 				<node name="screenOrientation" value="Orientarea ecranului">
 					<node name="system" value="Sistem"/>
+					<node name="sensor" value="In functie de orientarea dispozitivului"/>
 					<node name="portrait" value="Portret"/>
 					<node name="landscape" value="Orizontal (Peisaj)"/>
 					<node name="reversePortrait" value="Portret inversat"/>
@@ -317,6 +319,10 @@
 				<node name="showStatusBar" value="Arata bara de stare">
 					<node name="summaryOn" value="Afiseaza bara de stare arata în modul de citire"/>
 					<node name="summaryOff" value="Ascunde bara de stare în modul de citire"/>
+				</node>
+				<node name="showActionBar" value="Arata bara de actiuni">
+					<node name="summaryOn" value="Arata bara de actiuni in modul citire"/>
+					<node name="summaryOff" value="Ascunde bara de actiuni in modul citire"/>
 				</node>
 				<node name="showStatusBarWhenMenuIsActive" value="Arata bara de stare atunci când meniul este activ">
 					<node name="summaryOn" value="Arata bara de stare atunci când meniu devine activ"/>
@@ -626,7 +632,7 @@
 					<node name="goBack" value="Navigati înapoi"/>
 					<node name="cancelMenu" value="Arata  meniul de anulare"/>
 				</node>
-				<node name="backKeyLongPressAction" value="Apasarea lunga tasta inapoi">
+				<node name="backKeyLongPressAction" value="Apasare lunga tasta inapoi">
 					<node name="exit" value="Inchide Aplicatia"/>
 					<node name="goBack" value="Navigati înapoi"/>
 					<node name="cancelMenu" value="Arata meniul de anulare"/>

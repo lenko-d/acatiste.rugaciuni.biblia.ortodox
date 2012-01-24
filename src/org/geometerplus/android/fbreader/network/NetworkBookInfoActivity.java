@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
@@ -66,6 +67,10 @@ public class NetworkBookInfoActivity extends Activity implements NetworkLibrary.
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		Thread.setDefaultUncaughtExceptionHandler(new org.geometerplus.zlibrary.ui.android.library.UncaughtExceptionHandler(this));
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			getActionBar().setDisplayUseLogoEnabled(false);
+		}
 
 		SQLiteCookieDatabase.init(this);
 
@@ -346,12 +351,11 @@ public class NetworkBookInfoActivity extends Activity implements NetworkLibrary.
 		}
 	}
 
-	private void addMenuItem(Menu menu, int index, String label, int iconId) {
+	private void addMenuItem(Menu menu, int index, String label, boolean showAsAction) {
 		final MenuItem item = menu.add(0, index, Menu.NONE, label);
-		if (iconId != -1) {
-			item.setIcon(iconId);
-			item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-		}
+		item.setShowAsAction(
+			showAsAction ? MenuItem.SHOW_AS_ACTION_IF_ROOM : MenuItem.SHOW_AS_ACTION_NEVER
+		);
 	}
 
 	private void updateView() {
@@ -394,7 +398,7 @@ public class NetworkBookInfoActivity extends Activity implements NetworkLibrary.
 	public boolean onCreateOptionsMenu(Menu menu) {
 		if (myTree != null) {
 			for (final NetworkBookActions.NBAction a : NetworkBookActions.getContextMenuActions(this, myTree, myConnection)) {
-				addMenuItem(menu, a.Code, a.getContextLabel(null), a.IconId);
+				addMenuItem(menu, a.Code, a.getContextLabel(null), a.ShowAsAction);
 			}
 		}
 		return true;

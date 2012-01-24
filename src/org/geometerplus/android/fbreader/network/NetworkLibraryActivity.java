@@ -285,10 +285,9 @@ public abstract class NetworkLibraryActivity extends TreeActivity implements Net
 
 		for (Action a : myOptionsMenuActions) {
 			final MenuItem item = menu.add(0, a.Code, Menu.NONE, "");
-			if (a.IconId != -1) {
-				item.setIcon(a.IconId);
-				item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-			}
+			item.setShowAsAction(
+				a.ShowAsAction ? MenuItem.SHOW_AS_ACTION_IF_ROOM : MenuItem.SHOW_AS_ACTION_NEVER
+			);
 		}
 		return true;
 	}

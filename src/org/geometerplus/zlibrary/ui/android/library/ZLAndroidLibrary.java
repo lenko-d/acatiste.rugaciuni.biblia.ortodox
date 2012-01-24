@@ -26,6 +26,7 @@ import java.lang.reflect.Field;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.res.AssetFileDescriptor;
 import android.os.Build;
 import android.telephony.TelephonyManager;
@@ -43,10 +44,26 @@ import org.geometerplus.zlibrary.ui.android.view.ZLAndroidWidget;
 
 public final class ZLAndroidLibrary extends ZLibrary {
 	public final ZLBooleanOption ShowStatusBarOption = new ZLBooleanOption("LookNFeel", "ShowStatusBar", false);
+	public final ZLBooleanOption ShowActionBarOption = new ZLBooleanOption("LookNFeel", "ShowActionBar", false);
 	public final ZLIntegerRangeOption BatteryLevelToTurnScreenOffOption = new ZLIntegerRangeOption("LookNFeel", "BatteryLevelToTurnScreenOff", 0, 100, 50);
 	public final ZLBooleanOption DontTurnScreenOffDuringChargingOption = new ZLBooleanOption("LookNFeel", "DontTurnScreenOffDuringCharging", true);
 	public final ZLIntegerRangeOption ScreenBrightnessLevelOption = new ZLIntegerRangeOption("LookNFeel", "ScreenBrightnessLevel", 0, 100, 0);
-	public final ZLBooleanOption DisableButtonLightsOption = new ZLBooleanOption("LookNFeel", "DisableButtonLights", true);
+	public final ZLBooleanOption DisableButtonLightsOption = new ZLBooleanOption("LookNFeel", "DisableButtonLights", !hasButtonLightsBug());
+
+	private Boolean myIsKindleFire = null;
+	public boolean isKindleFire() {
+		if (myIsKindleFire == null) {
+			final String KINDLE_MODEL_REGEXP = ".*kindle(\\s+)fire.*";
+			myIsKindleFire =
+				Build.MODEL != null &&
+				Build.MODEL.toLowerCase().matches(KINDLE_MODEL_REGEXP);
+		}
+		return myIsKindleFire;
+	}
+
+	public boolean hasButtonLightsBug() {
+		return "GT-S5830".equals(Build.MODEL);
+	}
 
 	private ZLAndroidActivity myActivity;
 	private final Application myApplication;
@@ -91,7 +108,20 @@ public final class ZLAndroidLibrary extends ZLibrary {
 	@Override
 	public String getVersionName() {
 		try {
-			return myApplication.getPackageManager().getPackageInfo(myApplication.getPackageName(), 0).versionName;
+			final PackageInfo info =
+				myApplication.getPackageManager().getPackageInfo(myApplication.getPackageName(), 0);
+			return info.versionName;
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	@Override
+	public String getFullVersionName() {
+		try {
+			final PackageInfo info =
+				myApplication.getPackageManager().getPackageInfo(myApplication.getPackageName(), 0);
+			return info.versionName + " (" + info.versionCode + ")";
 		} catch (Exception e) {
 			return "";
 		}

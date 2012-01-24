@@ -19,12 +19,11 @@
 
 package org.geometerplus.android.fbreader.library;
 
-import org.geometerplus.fbreader.library.Library;
-
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import org.geometerplus.fbreader.library.Library;
 
 public class LibrarySearchActivity extends Activity {
 	@Override

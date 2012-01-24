@@ -26,7 +26,6 @@ import org.geometerplus.zlibrary.core.network.ZLNetworkException;
 import org.geometerplus.fbreader.network.NetworkTree;
 import org.geometerplus.fbreader.network.NetworkLibrary;
 
-
 import org.geometerplus.android.util.UIUtil;
 
 public class RefreshRootCatalogAction extends RootAction {

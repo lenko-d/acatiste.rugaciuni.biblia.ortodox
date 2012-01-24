@@ -646,6 +646,25 @@
 					<node name="summaryOff" value="Nu afisa"/>
 				</node>
 			</node>
+			<node name="about" value="Despre Aplicatie">
+				<node name="summary" value="Versiune, contacte"/>
+				<node name="version" value="Versiune"/>
+				<node name="site" value="Viziteaza site-ul nostru">
+					<node name="url" value="http://ortodox.maryhit.com"/>
+				</node>
+				<node name="email" value="Send us an e-mail">
+					<node name="url" value="mailto:aplicatii.romanesti@gmail.com"/>
+				</node>
+				<node name="twitter" value="Ne gasiti pe Twitter:">
+					<node name="url" value="http://twitter.com/aplicatii_ro"/>
+				</node>
+				<node name="googleplus" value="Ne gasiti pe Google plus:">
+					<node name="url" value="http://plus.google.com/u/0/b/104472561909298753983/#104472561909298753983/posts"/>
+				</node>
+				<node name="facebook" value="Ne gasiti pe Facebook:">
+					<node name="url" value="http://www.facebook.com/people/Aplicatii-Romanesti/100003250206506"/>
+				</node>
+			</node>
 		</node>
 		<node name="OptionsDialog">
 			<node name="tab">

@@ -18,8 +18,9 @@
  */
 
 package org.geometerplus.fbreader.fbreader;
+
 //maryhit imports for SDCardCopy methods
-import java.io.File; 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -74,6 +75,7 @@ public final class FBReaderApp extends ZLApplication {
 	public static enum ImageTappingAction {
 		doNothing, selectImage, openImageView
 	}
+
 	public final ZLEnumOption<ImageTappingAction> ImageTappingActionOption =
 		new ZLEnumOption<ImageTappingAction>("Options", "ImageTappingAction", ImageTappingAction.openImageView);
 
@@ -103,7 +105,7 @@ public final class FBReaderApp extends ZLApplication {
 		new ZLStringOption("Options", "FooterFont", "Droid Sans");
 
 	final ZLStringOption ColorProfileOption =
-		new ZLStringOption("Options", "ColorProfile", ColorProfile.DAY);//maryhit: here you can chage default to night
+		new ZLStringOption("Options", "ColorProfile", ColorProfile.DAY);//maryhit: default for day/night is here
 
 	public final ZLBooleanOption ShowPreviousBookInCancelMenuOption =
 		new ZLBooleanOption("CancelMenu", "previousBook", false);
@@ -169,8 +171,7 @@ public final class FBReaderApp extends ZLApplication {
 		});
 	}
 
-	
-	/* MARYHIT COPY FILES TO SDCARD - START */ //maryhit
+	/* MARYHIT COPY FILES TO SDCARD - START */// maryhit
 	public boolean TestIfCopyIsRequired(Context ctx) {
 		String fileBooksVersion = "/mnt/sdcard/Books/versiune.txt";
 		try {
@@ -218,20 +219,15 @@ public final class FBReaderApp extends ZLApplication {
 
 		return text.toString();
 	}
-/*
-	public void copyBooksToSDCard(Context ctx) {
-		try {
-			if (!TestIfCopyIsRequired(ctx)) {
-				return;
-			}
-			Log.i("copyBooksToSDCard", "Copy Starts Now");
-			copyFileOrDir("", ctx); // no trailing slash / please !!!;
-			Log.i("copyBooksToSDCard", "Copy Ends Now");
-		} catch (Exception ex) {
-			Log.e("copyBooksToSDCard", ex.getMessage());
-		}
-	}*/
-	public void copyBooksToSDCard(final  Context ctx) {
+
+	/*
+	 * public void copyBooksToSDCard(Context ctx) { try { if
+	 * (!TestIfCopyIsRequired(ctx)) { return; } Log.i("copyBooksToSDCard",
+	 * "Copy Starts Now"); copyFileOrDir("", ctx); // no trailing slash / please
+	 * !!!; Log.i("copyBooksToSDCard", "Copy Ends Now"); } catch (Exception ex)
+	 * { Log.e("copyBooksToSDCard", ex.getMessage()); } }
+	 */
+	public void copyBooksToSDCard(final Context ctx) {
 
 		UIUtil.wait("creatingBooksDatabase", new Runnable() {
 			public void run() {
@@ -360,7 +356,7 @@ public final class FBReaderApp extends ZLApplication {
 	}
 
 	public FBView getTextView() {
-		return (FBView)getCurrentView();
+		return (FBView) getCurrentView();
 	}
 
 	public void tryOpenFootnote(String id) {
@@ -500,7 +496,7 @@ public final class FBReaderApp extends ZLApplication {
 
 	private static class BookmarkDescription extends CancelActionDescription {
 		final Bookmark Bookmark;
-		
+
 		BookmarkDescription(Bookmark b) {
 			super(CancelActionType.returnTo, b.getText());
 			Bookmark = b;
@@ -540,19 +536,19 @@ public final class FBReaderApp extends ZLApplication {
 
 		final CancelActionDescription description = myCancelActionsList.get(index);
 		switch (description.Type) {
-			case previousBook:
-				openBook(Library.getPreviousBook(), null);
-				break;
+		case previousBook:
+			openBook(Library.getPreviousBook(), null);
+			break;
 			case returnTo:
 			{
-				final Bookmark b = ((BookmarkDescription)description).Bookmark;
-				b.delete();
-				gotoBookmark(b);
-				break;
-			}
-			case close:
-				closeWindow();
-				break;
+			final Bookmark b = ((BookmarkDescription) description).Bookmark;
+			b.delete();
+			gotoBookmark(b);
+			break;
+		}
+		case close:
+			closeWindow();
+			break;
 		}
 	}
 
@@ -612,7 +608,7 @@ public final class FBReaderApp extends ZLApplication {
 			return null;
 		}
 
-		int index = cursor.getParagraphIndex();	
+		int index = cursor.getParagraphIndex();
 		if (cursor.isEndOfParagraph()) {
 			++index;
 		}

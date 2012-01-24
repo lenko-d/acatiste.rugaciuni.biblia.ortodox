@@ -57,7 +57,6 @@ import org.geometerplus.android.util.UIUtil;
 
 public final class FBReader extends ZLAndroidActivity {
 	static final int ACTION_BAR_COLOR = Color.DKGRAY;
-
 	public static final String BOOK_PATH_KEY = "BookPath";
 
 	final static int REPAINT_CODE = 1;
@@ -111,7 +110,6 @@ public final class FBReader extends ZLAndroidActivity {
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-
 		final FBReaderApp fbReader = (FBReaderApp)FBReaderApp.Instance();
 		final ZLAndroidLibrary zlibrary = (ZLAndroidLibrary)ZLibrary.Instance();
 		myShowStatusBarFlag = zlibrary.ShowStatusBarOption.getValue();
@@ -135,7 +133,6 @@ public final class FBReader extends ZLAndroidActivity {
 		bar.setBackgroundDrawable(new ColorDrawable(ACTION_BAR_COLOR));
 
 		setTitle(fbReader.getTitle());
-
 		if (fbReader.getPopupById(TextSearchPopup.ID) == null) {
 			new TextSearchPopup(fbReader);
 		}
@@ -145,12 +142,13 @@ public final class FBReader extends ZLAndroidActivity {
 
 		fbReader.addAction(ActionCode.SHOW_LIBRARY, new ShowLibraryAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_LIBRARY_SDCARD, new ShowLibrarySDCardFolderAction(this, fbReader));//maryhit
+		
 		fbReader.addAction(ActionCode.SHOW_PREFERENCES, new ShowPreferencesAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_BOOK_INFO, new ShowBookInfoAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_TOC, new ShowTOCAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_BOOKMARKS, new ShowBookmarksAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_NETWORK_LIBRARY, new ShowNetworkLibraryAction(this, fbReader));
-		
+
 		fbReader.addAction(ActionCode.TOGGLE_BARS, new ToggleBarsAction(this, fbReader));
 		fbReader.addAction(ActionCode.SEARCH, new SearchAction(this, fbReader));
 
@@ -218,7 +216,6 @@ public final class FBReader extends ZLAndroidActivity {
 	@Override
 	public void onStart() {
 		super.onStart();
-
 		final ZLAndroidLibrary zlibrary = (ZLAndroidLibrary)ZLibrary.Instance();
 
 		if (zlibrary.ShowStatusBarOption.getValue() != myShowStatusBarFlag ||
@@ -279,9 +276,7 @@ public final class FBReader extends ZLAndroidActivity {
 		} catch (Throwable t) {
 		}
 		PopupPanel.restoreVisibilities(FBReaderApp.Instance());
-
 		hideBars();
-
 		ApiServerImplementation.sendEvent(this, ApiListener.EVENT_READ_MODE_OPENED);
 	}
 
@@ -358,6 +353,7 @@ public final class FBReader extends ZLAndroidActivity {
 				break;
 		}
 	}
+
 
 	private Menu addSubMenu(Menu menu, String id) {
 		final ZLAndroidApplication application = (ZLAndroidApplication)getApplication();

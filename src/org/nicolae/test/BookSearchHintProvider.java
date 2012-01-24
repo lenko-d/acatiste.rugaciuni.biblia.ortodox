@@ -1,5 +1,8 @@
 package org.nicolae.test;
 
+import org.geometerplus.android.fbreader.library.SQLiteBooksDatabase;
+import org.geometerplus.fbreader.library.BooksDatabase;
+
 import android.app.SearchManager;
 import android.content.ContentProvider;
 import android.content.ContentResolver;
@@ -16,6 +19,7 @@ public class BookSearchHintProvider extends ContentProvider {
 
 	String TAG = "BookSearchHintProvider";
 
+	//private BooksDatabase myDatabaseInit = SQLiteBooksDatabase.Instance();//maryhit
 	private SQLiteDatabase myDatabase = null;
 
 	public static String AUTHORITY = "org.nicolae.test.BookSearchHintProvider";
@@ -110,6 +114,11 @@ public class BookSearchHintProvider extends ContentProvider {
 			+ "where b.file_id = f1.file_id and f1.parent_id=f2.file_id ";
 
 	private synchronized void connectToDatabase() {
+		
+//		if (myDatabaseInit == null) {//maryhit
+//			myDatabaseInit = new SQLiteBooksDatabase(getContext(), "LIBRARY");//maryhit
+//		}
+		
 		if (myDatabase == null) {
 
 			myDatabase = getContext().openOrCreateDatabase("books.db",

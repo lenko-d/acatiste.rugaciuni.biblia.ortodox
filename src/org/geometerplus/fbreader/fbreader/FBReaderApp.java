@@ -67,6 +67,7 @@ public final class FBReaderApp extends ZLApplication {
 	public static enum WordTappingAction {
 		doNothing, selectSingleWord, startSelecting, openDictionary
 	}
+
 	public final ZLEnumOption<WordTappingAction> WordTappingActionOption =
 		new ZLEnumOption<WordTappingAction>("Options", "WordTappingAction", WordTappingAction.startSelecting);
 
@@ -75,6 +76,7 @@ public final class FBReaderApp extends ZLApplication {
 	public static enum ImageTappingAction {
 		doNothing, selectImage, openImageView
 	}
+
 	public final ZLEnumOption<ImageTappingAction> ImageTappingActionOption =
 		new ZLEnumOption<ImageTappingAction>("Options", "ImageTappingAction", ImageTappingAction.openImageView);
 
@@ -104,7 +106,7 @@ public final class FBReaderApp extends ZLApplication {
 		new ZLStringOption("Options", "FooterFont", "Droid Sans");
 
 	final ZLStringOption ColorProfileOption =
-		new ZLStringOption("Options", "ColorProfile", ColorProfile.DAY);
+		new ZLStringOption("Options", "ColorProfile", ColorProfile.DAY);//maryhit: default for day/night is here
 
 	public final ZLBooleanOption ShowPreviousBookInCancelMenuOption =
 		new ZLBooleanOption("CancelMenu", "previousBook", false);
@@ -315,6 +317,7 @@ public final class FBReaderApp extends ZLApplication {
 	}
 
 	/* MARYHIT COPY FILES TO SDCARD - END */
+
 	public void openBook(final Book book, final Bookmark bookmark) {
 		if (book == null) {
 			return;
@@ -354,7 +357,7 @@ public final class FBReaderApp extends ZLApplication {
 	}
 
 	public FBView getTextView() {
-		return (FBView)getCurrentView();
+		return (FBView) getCurrentView();
 	}
 
 	public void tryOpenFootnote(String id) {
@@ -494,15 +497,14 @@ public final class FBReaderApp extends ZLApplication {
 
 	private static class BookmarkDescription extends CancelActionDescription {
 		final Bookmark Bookmark;
-		
+
 		BookmarkDescription(Bookmark b) {
 			super(CancelActionType.returnTo, b.getText());
 			Bookmark = b;
 		}
 	}
 
-	private final ArrayList<CancelActionDescription> myCancelActionsList =
-		new ArrayList<CancelActionDescription>();
+	private final ArrayList<CancelActionDescription> myCancelActionsList = new ArrayList<CancelActionDescription>();
 
 	public List<CancelActionDescription> getCancelActionsList() {
 		myCancelActionsList.clear();
@@ -534,19 +536,19 @@ public final class FBReaderApp extends ZLApplication {
 
 		final CancelActionDescription description = myCancelActionsList.get(index);
 		switch (description.Type) {
-			case previousBook:
-				openBook(Library.getPreviousBook(), null);
-				break;
+		case previousBook:
+			openBook(Library.getPreviousBook(), null);
+			break;
 			case returnTo:
 			{
-				final Bookmark b = ((BookmarkDescription)description).Bookmark;
-				b.delete();
-				gotoBookmark(b);
-				break;
-			}
-			case close:
-				closeWindow();
-				break;
+			final Bookmark b = ((BookmarkDescription) description).Bookmark;
+			b.delete();
+			gotoBookmark(b);
+			break;
+		}
+		case close:
+			closeWindow();
+			break;
 		}
 	}
 
@@ -606,7 +608,7 @@ public final class FBReaderApp extends ZLApplication {
 			return null;
 		}
 
-		int index = cursor.getParagraphIndex();	
+		int index = cursor.getParagraphIndex();
 		if (cursor.isEndOfParagraph()) {
 			++index;
 		}

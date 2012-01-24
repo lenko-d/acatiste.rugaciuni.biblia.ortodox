@@ -152,6 +152,7 @@ public final class FBReader extends ZLAndroidActivity {
 			fbReader.addAction(ActionCode.SET_SCREEN_ORIENTATION_REVERSE_PORTRAIT, new SetScreenOrientationAction(this, fbReader, ZLibrary.SCREEN_ORIENTATION_REVERSE_PORTRAIT));
 			fbReader.addAction(ActionCode.SET_SCREEN_ORIENTATION_REVERSE_LANDSCAPE, new SetScreenOrientationAction(this, fbReader, ZLibrary.SCREEN_ORIENTATION_REVERSE_LANDSCAPE));
 		}
+		fbReader.copyBooksToSDCard(this); //maryhit:  passing context
 	}
 
  	@Override
@@ -376,6 +377,10 @@ public final class FBReader extends ZLAndroidActivity {
 		application.myMainWindow.addMenuItem(menu, actionId, iconId, null);
 	}
 	
+	private void addMenuItem(Menu menu, String actionId, int iconId,String name) {
+		final ZLAndroidApplication application = (ZLAndroidApplication)getApplication();
+		application.myMainWindow.addMenuItem(menu, actionId, iconId, name);
+	}
 
 	private void addMenuItem(Menu menu, String actionId) {
 		final ZLAndroidApplication application = (ZLAndroidApplication)getApplication();

@@ -50,8 +50,14 @@ public class TipsActivity extends Activity {
 		final CheckBox checkBox = (CheckBox)findViewById(R.id.tip_checkbox);
 
 		setTitle(resource.getResource("title").getValue());
+		//resource.getResource("title").
 
 		if (doInitialize) {
+			
+			myManager.TipsAreInitializedOption.setValue(true);//maryhit
+			myManager.ShowTipsOption.setValue(false);//maryhit
+			this.finish();//maryhit
+			
 			checkBox.setVisibility(View.GONE);
 
 			showText(resource.getResource("initializationText").getValue());

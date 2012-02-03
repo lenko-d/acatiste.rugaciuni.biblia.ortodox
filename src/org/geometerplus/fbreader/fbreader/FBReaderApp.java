@@ -41,6 +41,7 @@ import org.geometerplus.zlibrary.core.util.ZLColor;
 import org.geometerplus.zlibrary.text.hyphenation.ZLTextHyphenator;
 import org.geometerplus.zlibrary.text.view.ZLTextWordCursor;
 
+import org.geometerplus.fbreader.Paths;
 import org.geometerplus.fbreader.bookmodel.BookModel;
 import org.geometerplus.fbreader.bookmodel.TOCTree;
 import org.geometerplus.fbreader.library.*;
@@ -173,7 +174,9 @@ public final class FBReaderApp extends ZLApplication {
 
 	/* MARYHIT COPY FILES TO SDCARD - START */// maryhit
 	public boolean TestIfCopyIsRequired(Context ctx) {
-		String fileBooksVersion = "/mnt/sdcard/Books/versiune.txt";
+		//String fileBooksVersion = "/mnt/sdcard/Books/versiune.txt";
+		String fileBooksVersion = Paths.BooksDirectoryOption().getValue()+"/versiune.txt";
+		//File sdCard = Environment.getExternalStorageDirectory();// http://stackoverflow.com/questions/3551821/android-write-to-sd-card-folder//maryhit
 		try {
 			// InputStream in = new FileInputStream(fileBooksVersion);
 
@@ -237,9 +240,9 @@ public final class FBReaderApp extends ZLApplication {
 					}
 					Log.i("copyBooksToSDCard", "Copy Starts Now");
 					copyFileOrDir("", ctx); // no trailing slash / please !!!;
-					Log.i("copyBooksToSDCard", "Copy Ends Now");
-					initDbAndLibraryIndex(ctx);
-					Log.i("initDbAndLibraryIndex", "Index Called");
+					//Log.i("copyBooksToSDCard", "Copy Ends Now");
+					//initDbAndLibraryIndex(ctx); //maryhit disabled to be on the safe side. Sunt niste err. de db lock...
+					//Log.i("initDbAndLibraryIndex", "Index Called");
 				} catch (Exception ex) {
 					Log.e("copyBooksToSDCard", ex.getMessage());
 				}
@@ -260,7 +263,8 @@ public final class FBReaderApp extends ZLApplication {
 			if (assets.length == 0) {
 				copyFile(dataSDCardRelativePath, ctx);
 			} else {
-				String fullPath = "/mnt/sdcard/" + dataSDCardRelativePath;
+				//String fullPath = "/mnt/sdcard/" + dataSDCardRelativePath;
+				String fullPath = Paths.BooksDirectoryOption().getValue()+"/../" + dataSDCardRelativePath;
 				File dir = new File(fullPath);
 				if (!dir.exists())
 					if (!dir.mkdir())
@@ -285,7 +289,8 @@ public final class FBReaderApp extends ZLApplication {
 		final String apkSrcAssetsdataSDCardPathRoot = "data/SDCard";
 		try {
 			in = assetManager.open(apkSrcAssetsdataSDCardPathRoot + filename);
-			String newFileName = "/mnt/sdcard" + filename;
+			//String newFileName = "/mnt/sdcard" + filename;
+			String newFileName = Paths.BooksDirectoryOption().getValue() + filename;
 			out = new FileOutputStream(newFileName);
 
 			byte[] buffer = new byte[1024];

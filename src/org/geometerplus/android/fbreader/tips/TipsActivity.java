@@ -56,7 +56,8 @@ public class TipsActivity extends Activity {
 			
 			myManager.TipsAreInitializedOption.setValue(true);//maryhit
 			myManager.ShowTipsOption.setValue(false);//maryhit
-			this.finish();//maryhit
+			//this.finish();//maryhit
+			finish();//maryhit
 			
 			checkBox.setVisibility(View.GONE);
 

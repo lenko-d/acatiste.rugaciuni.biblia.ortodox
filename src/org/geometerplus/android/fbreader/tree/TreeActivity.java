@@ -50,10 +50,6 @@ public abstract class TreeActivity extends ListActivity {
 		Thread.setDefaultUncaughtExceptionHandler(new org.geometerplus.zlibrary.ui.android.library.UncaughtExceptionHandler(this));
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-			getActionBar().setDisplayUseLogoEnabled(false);
-		}
 	}
 
 	@Override
@@ -129,7 +125,8 @@ public abstract class TreeActivity extends ListActivity {
 							public void run() {
 								openTreeInternal(tree, treeToSelect, storeInHistory);
 							}
-						}
+						},
+						true
 					);
 				} else {
 					tree.waitForOpening();
@@ -154,7 +151,15 @@ public abstract class TreeActivity extends ListActivity {
 		setTitle(myCurrentTree.getTreeTitle());
 		final FBTree selectedTree =
 			selectedKey != null ? getTreeByKey(selectedKey) : adapter.getFirstSelectedItem();
-		setSelection(adapter.getIndex(selectedTree));
+		final int index = adapter.getIndex(selectedTree);
+		if (index != -1) {
+			setSelection(index);
+			getListView().post(new Runnable() {
+				public void run() {
+					setSelection(index);
+				}
+			});
+		}
 
 		myHistory = (ArrayList<FBTree.Key>)intent.getSerializableExtra(HISTORY_KEY);
 		if (myHistory == null) {

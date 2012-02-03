@@ -21,25 +21,13 @@ package org.geometerplus.android.fbreader;
 
 import android.content.Intent;
 
-import org.geometerplus.fbreader.fbreader.FBReaderApp;
-import org.geometerplus.fbreader.bookmodel.BookModel;
+import org.geometerplus.zlibrary.ui.android.library.ZLAndroidApplication;
+import org.geometerplus.android.fbreader.libraryService.LibraryService;
 
-import org.geometerplus.android.fbreader.library.LibraryActivity;
-
-class ShowLibrarySDCardFolderAction extends FBAndroidAction {
-	ShowLibrarySDCardFolderAction(FBReader baseActivity, FBReaderApp fbreader) {
-		super(baseActivity, fbreader);
-	}
-
+public class FBReaderApplication extends ZLAndroidApplication {
 	@Override
-	protected void run(Object... params) {
-		final BookModel model = Reader.Model;
-		Intent intent = new Intent(BaseActivity.getApplicationContext(),
-				LibraryActivity.class);
-		intent.putExtra(LibraryActivity.SELECTED_BOOK_PATH_KEY,
-				"/mnt/sdcard/Books");
-		intent.putExtra(LibraryActivity.START_SEARCH_IMMEDIATELY,
-				"true");
-		BaseActivity.startActivity(intent);
+	public void onCreate() {
+		super.onCreate();
+		//bindService(new Intent(this, LibraryService.class), null, LibraryService.BIND_AUTO_CREATE);
 	}
 }

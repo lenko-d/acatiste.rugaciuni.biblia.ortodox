@@ -59,7 +59,6 @@ public class BookInfoActivity extends Activity implements MenuItem.OnMenuItemCli
 
 	private final ZLResource myResource = ZLResource.resource("bookInfo");
 	private ZLFile myFile;
-	private ZLImage myImage;
 	private boolean myDontReloadBook;
 
 	@Override
@@ -74,8 +73,6 @@ public class BookInfoActivity extends Activity implements MenuItem.OnMenuItemCli
 		myDontReloadBook = intent.getBooleanExtra(FROM_READING_MODE_KEY, false);
 		myFile = ZLFile.createFileByPath(path);
 
-		myImage = Library.getCover(myFile);
-
 		if (SQLiteBooksDatabase.Instance() == null) {
 			new SQLiteBooksDatabase(this, "LIBRARY");
 		}
@@ -83,9 +80,6 @@ public class BookInfoActivity extends Activity implements MenuItem.OnMenuItemCli
 		final ActionBar bar = getActionBar();
 		if (bar != null) {
 			bar.setDisplayShowTitleEnabled(false);
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-				bar.setDisplayUseLogoEnabled(false);
-			}
 		}
 		setContentView(R.layout.book_info);
 
@@ -146,18 +140,20 @@ public class BookInfoActivity extends Activity implements MenuItem.OnMenuItemCli
 		coverView.setVisibility(View.GONE);
 		coverView.setImageDrawable(null);
 
-		if (myImage == null) {
+		final ZLImage image = LibraryUtil.getCover(book);
+
+		if (image == null) {
 			return;
 		}
 
-		if (myImage instanceof ZLLoadableImage) {
-			final ZLLoadableImage loadableImage = (ZLLoadableImage)myImage;
+		if (image instanceof ZLLoadableImage) {
+			final ZLLoadableImage loadableImage = (ZLLoadableImage)image;
 			if (!loadableImage.isSynchronized()) {
 				loadableImage.synchronize();
 			}
 		}
 		final ZLAndroidImageData data =
-			((ZLAndroidImageManager)ZLAndroidImageManager.Instance()).getImageData(myImage);
+			((ZLAndroidImageManager)ZLAndroidImageManager.Instance()).getImageData(image);
 		if (data == null) {
 			return;
 		}
@@ -188,8 +184,7 @@ public class BookInfoActivity extends Activity implements MenuItem.OnMenuItemCli
 		setupInfoPair(R.id.book_authors, "authors", buffer);
 
 		final SeriesInfo series = book.getSeriesInfo();
-		setupInfoPair(R.id.book_series, "series",
-				(series == null) ? null : series.Name);
+		setupInfoPair(R.id.book_series, "series", series == null ? null : series.Name);
 		String seriesIndexString = null;
 		if (series != null && series.Index > 0) {
 			if (Math.abs(series.Index - Math.round(series.Index)) < 0.01) {
@@ -222,7 +217,7 @@ public class BookInfoActivity extends Activity implements MenuItem.OnMenuItemCli
 	private void setupAnnotation(Book book) {
 		final TextView titleView = (TextView)findViewById(R.id.book_info_annotation_title);
 		final TextView bodyView = (TextView)findViewById(R.id.book_info_annotation_body);
-		final String annotation = Library.getAnnotation(book.File);	
+		final String annotation = LibraryUtil.getAnnotation(book.File);	
 		if (annotation == null) {
 			titleView.setVisibility(View.GONE);
 			bodyView.setVisibility(View.GONE);

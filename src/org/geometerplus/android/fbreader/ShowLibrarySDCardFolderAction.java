@@ -21,6 +21,7 @@ package org.geometerplus.android.fbreader;
 
 import android.content.Intent;
 
+import org.geometerplus.fbreader.Paths;
 import org.geometerplus.fbreader.fbreader.FBReaderApp;
 import org.geometerplus.fbreader.bookmodel.BookModel;
 
@@ -36,8 +37,8 @@ class ShowLibrarySDCardFolderAction extends FBAndroidAction {
 		final BookModel model = Reader.Model;
 		Intent intent = new Intent(BaseActivity.getApplicationContext(),
 				LibraryActivity.class);
-		intent.putExtra(LibraryActivity.SELECTED_BOOK_PATH_KEY,
-				"/mnt/sdcard/Books");
+		intent.putExtra(LibraryActivity.SELECTED_BOOK_PATH_KEY, Paths.BooksDirectoryOption().getValue());
+				//"/mnt/sdcard/Books");
 		intent.putExtra(LibraryActivity.START_SEARCH_IMMEDIATELY,
 				"true");
 		BaseActivity.startActivity(intent);

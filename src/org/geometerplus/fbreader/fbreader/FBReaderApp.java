@@ -19,14 +19,12 @@
 
 package org.geometerplus.fbreader.fbreader;
 
-//maryhit imports for SDCardCopy methods
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-//maryhit: end imports for SDCardCopy methods
 import java.util.*;
 
 import org.geometerplus.android.fbreader.library.*;//maryhit for DB & Lib index init
@@ -45,7 +43,6 @@ import org.geometerplus.fbreader.Paths;
 import org.geometerplus.fbreader.bookmodel.BookModel;
 import org.geometerplus.fbreader.bookmodel.TOCTree;
 import org.geometerplus.fbreader.library.*;
-//maryhit: again for SDCardCopy
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.res.AssetManager;
@@ -120,7 +117,6 @@ public final class FBReaderApp extends ZLApplication {
 	public volatile BookModel Model;
 
 	public FBReaderApp() {
-
 		addAction(ActionCode.INCREASE_FONT, new ChangeFontSizeAction(this, +2));
 		addAction(ActionCode.DECREASE_FONT, new ChangeFontSizeAction(this, -2));
 
@@ -160,22 +156,14 @@ public final class FBReaderApp extends ZLApplication {
 					book = Book.getByFile(Library.getHelpFile());
 				}
 			}
+<<<<<<< Temporary merge branch 1
 			if (book == null) {
 				return;
 			}
-		}
-		if (Model != null) {
-			if (bookmark == null & book.File.getPath().equals(Model.Book.File.getPath())) {
-				return;
-			}
-		}
-		final Book bookToOpen = book;
-		runWithMessage("loadingBook", new Runnable() {
-			public void run() {
-				openBookInternal(bookToOpen, bookmark);
-			}
+=======
 		});
 	}
+
 	/* MARYHIT COPY FILES TO SDCARD - START */// maryhit
 	public boolean TestIfCopyIsRequired(Context ctx) {
 		//String fileBooksVersion = "/mnt/sdcard/Books/versiune.txt";
@@ -268,7 +256,7 @@ public final class FBReaderApp extends ZLApplication {
 				copyFile(dataSDCardRelativePath, ctx);
 			} else {
 				//String fullPath = "/mnt/sdcard/" + dataSDCardRelativePath;
-				String fullPath = Paths.BooksDirectoryOption().getValue()+"/../" + dataSDCardRelativePath;
+				String fullPath = Paths.cardDirectory() + dataSDCardRelativePath;//+ "/"
 				File dir = new File(fullPath);
 				if (!dir.exists())
 					if (!dir.mkdir())
@@ -294,7 +282,7 @@ public final class FBReaderApp extends ZLApplication {
 		try {
 			in = assetManager.open(apkSrcAssetsdataSDCardPathRoot + filename);
 			//String newFileName = "/mnt/sdcard" + filename;
-			String newFileName = Paths.BooksDirectoryOption().getValue() + filename;
+			String newFileName = Paths.cardDirectory() + filename;
 			out = new FileOutputStream(newFileName);
 
 			byte[] buffer = new byte[1024];
@@ -325,6 +313,30 @@ public final class FBReaderApp extends ZLApplication {
 	}
 
 	/* MARYHIT COPY FILES TO SDCARD - END */
+	public void openBook(Book book, final Bookmark bookmark) {
+		if (book == null) {
+			if (Model == null) {
+				book = Library.Instance().getRecentBook();
+				if (book == null || !book.File.exists()) {
+					book = Book.getByFile(Library.getHelpFile());
+				}
+			}
+			if (book == null) {
+				return;
+			}
+		}
+		if (Model != null) {
+			if (bookmark == null & book.File.getPath().equals(Model.Book.File.getPath())) {
+				return;
+			}
+		}
+		final Book bookToOpen = book;
+		runWithMessage("loadingBook", new Runnable() {
+			public void run() {
+				openBookInternal(bookToOpen, bookmark);
+			}
+		});
+	}
 
 	private ColorProfile myColorProfile;
 

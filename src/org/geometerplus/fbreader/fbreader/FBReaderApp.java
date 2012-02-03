@@ -148,21 +148,6 @@ public final class FBReaderApp extends ZLApplication {
 		setView(BookTextView);
 	}
 
-	public void openBook(Book book, final Bookmark bookmark) {
-		if (book == null) {
-			if (Model == null) {
-				book = Library.Instance().getRecentBook();
-				if (book == null || !book.File.exists()) {
-					book = Book.getByFile(Library.getHelpFile());
-				}
-			}
-<<<<<<< Temporary merge branch 1
-			if (book == null) {
-				return;
-			}
-=======
-		});
-	}
 
 	/* MARYHIT COPY FILES TO SDCARD - START */// maryhit
 	public boolean TestIfCopyIsRequired(Context ctx) {

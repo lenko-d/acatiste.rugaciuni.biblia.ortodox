@@ -17,30 +17,25 @@
  * 02110-1301, USA.
  */
 
-package org.geometerplus.zlibrary.core.application;
+package org.geometerplus.fbreader.library;
 
-import org.geometerplus.zlibrary.core.view.ZLViewWidget;
+import org.geometerplus.zlibrary.core.filesystem.ZLFile;
+import org.geometerplus.zlibrary.core.image.ZLImage;
+import org.geometerplus.zlibrary.core.resources.ZLResource;
 
-abstract public class ZLApplicationWindow {
-	private ZLApplication myApplication;
+import org.geometerplus.fbreader.formats.*;
 
-	protected ZLApplicationWindow(ZLApplication application) {
-		myApplication = application;
-		myApplication.setWindow(this);
+public abstract class LibraryUtil {
+	public static ZLResource resource() {
+		return ZLResource.resource("library");
 	}
 
-	public ZLApplication getApplication() {
-		return myApplication;
+	public static ZLImage getCover(Book book) {
+		return book != null ? book.getCover() : null;
 	}
 
-	abstract protected void setTitle(String title);
-	abstract protected void runWithMessage(String key, Runnable runnable);
-
-	abstract protected void refresh();
-	
-	abstract protected ZLViewWidget getViewWidget();
-
-	abstract protected void close();
-
-	abstract protected int getBatteryLevel();
+	public static String getAnnotation(ZLFile file) {
+		final FormatPlugin plugin = PluginCollection.Instance().getPlugin(file);
+		return plugin != null ? plugin.readAnnotation(file) : null;
+	}
 }

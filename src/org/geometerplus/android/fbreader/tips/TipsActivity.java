@@ -58,7 +58,7 @@ public class TipsActivity extends Activity {
 			myManager.ShowTipsOption.setValue(false);//maryhit
 			//this.finish();//maryhit
 			finish();//maryhit
-			
+			/*
 			checkBox.setVisibility(View.GONE);
 
 			showText(resource.getResource("initializationText").getValue());
@@ -86,7 +86,7 @@ public class TipsActivity extends Activity {
 					myManager.ShowTipsOption.setValue(false);
 					finish();
 				}
-			});
+			}); */
 		} else {
 			checkBox.setText(resource.getResource("dontShowAgain").getValue());
 

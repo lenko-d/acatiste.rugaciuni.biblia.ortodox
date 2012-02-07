@@ -57,6 +57,8 @@ public abstract class NetworkCatalogItem extends NetworkItem {
 	private final Accessibility myAccessibility;
 	private int myFlags;
 
+	public boolean UpdatingInProgress;
+
 	/**
 	 * Creates new NetworkCatalogItem instance with specified accessibility and type.
 	 *
@@ -87,7 +89,6 @@ public abstract class NetworkCatalogItem extends NetworkItem {
 	}
 
 	public void resumeLoading(NetworkItemsLoader loader) throws ZLNetworkException {
-		throw new ZLNetworkException(NetworkException.ERROR_UNSUPPORTED_OPERATION);
 	}
 
 	public int getFlags() {

@@ -24,8 +24,8 @@ build_any(){
 	echo "______ BUILDING $CURRENT_BUILD_BRANCH .................... -START-"
 	echo "____________ Cleaning (and distclean).....: "
 	ant distclean
-	echo "____________ Building Native ($NDK/ndk-build).....: "
-	$NDK/ndk-build
+	echo "____________ Building Native ($NDK/ndk-build.cmd).....: "
+	$NDK/ndk-build.cmd
 	echo "____________ Building release (ant release).....: "
 	ant release
 	echo "______ BUILDING $CURRENT_BUILD_BRANCH .................... -DONE-(not verified yet)"

@@ -5,7 +5,7 @@
 checkout(){
 #	echo "TODO:______ CHECKOUT -> Verify if clean - no commits pendig, etc"
 	echo "______ CHECKOUT $CURRENT_BUILD_BRANCH .................... -START-"
-	git.cmd checkout $CURRENT_BUILD_BRANCH
+	git checkout $CURRENT_BUILD_BRANCH
 	echo "______ CHECKOUT $CURRENT_BUILD_BRANCH .................... -DONE-"
 }
 
@@ -61,8 +61,8 @@ return_to_master(){
 
 show_status(){
 	echo " "
-	echo "`git.cmd branch`"
-	echo "`git.cmd status`"
+	echo "`git branch`"
+	echo "`git status`"
 }
 
 byebye(){
@@ -90,7 +90,7 @@ shopt -s extglob  # A must for the case to eval the variable
 prj_dir=/cygdrive/c/_me/android/_epub/workspace/Acatiste_Rugaciuni_Scrieri_Ortodoxe_GIT/git/acatiste.rugaciuni.biblia.ortodox/
 out_dir=/cygdrive/c/_me/android/_KeyStore/
 cd $prj_dir
-all_braches=`git.cmd branch | tr "*" " " | cut -d " " -f 3`
+all_braches=`git branch | tr "*" " " | cut -d " " -f 3`
 VALID_BRANCHES=`echo $all_braches | tr " " "|"`
 
 echo "Branch(s) to be build:$1"

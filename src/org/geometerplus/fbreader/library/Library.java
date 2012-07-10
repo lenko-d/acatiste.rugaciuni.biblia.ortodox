@@ -405,6 +405,10 @@ public final class Library extends AbstractLibrary {
 	}
 
 	private volatile boolean myBuildStarted = false;
+	
+	public synchronized void doSyncBuild(){
+		build();
+	}
 
 	public synchronized void startBuild() {
 		if (myBuildStarted) {

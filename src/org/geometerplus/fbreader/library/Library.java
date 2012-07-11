@@ -405,7 +405,22 @@ public final class Library extends AbstractLibrary {
 	}
 
 	private volatile boolean myBuildStarted = false;
-
+	
+	public synchronized void doSyncBuild(){
+		if (myBuildStarted) {
+			fireModelChangedEvent(ChangeListener.Code.StatusChanged);
+			return;
+		}
+		myBuildStarted = true;
+		
+		setStatus(myStatusMask | STATUS_LOADING);
+		try{
+			build();
+		} finally {
+			setStatus(myStatusMask & ~STATUS_LOADING);
+		}
+	}
+	
 	public synchronized void startBuild() {
 		if (myBuildStarted) {
 			fireModelChangedEvent(ChangeListener.Code.StatusChanged);

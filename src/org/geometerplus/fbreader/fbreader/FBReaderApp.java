@@ -218,7 +218,7 @@ public final class FBReaderApp extends ZLApplication {
 					Log.i("copyBooksToSDCard", "Copy Starts Now");
 					copyFileOrDir("", ctx); // no trailing slash / please !!!;
 					//Log.i("copyBooksToSDCard", "Copy Ends Now");
-					//initDbAndLibraryIndex(ctx); //maryhit disabled to be on the safe side. Sunt niste err. de db lock...
+					initDbAndLibraryIndex(ctx); //maryhit disabled to be on the safe side. Sunt niste err. de db lock...
 					//Log.i("initDbAndLibraryIndex", "Index Called");
 				} catch (Exception ex) {
 					Log.e("copyBooksToSDCard", ex.getMessage());
@@ -293,7 +293,7 @@ public final class FBReaderApp extends ZLApplication {
 			myDatabase = new SQLiteBooksDatabase(ctx, "LIBRARY");
 		}
 		Library myLibrary = Library.Instance();
-		myLibrary.startBuild();
+		myLibrary.doSyncBuild();// startBuild(); //modificat ca sa nu porneasca thread, ci sa fie sync.
 
 	}
 

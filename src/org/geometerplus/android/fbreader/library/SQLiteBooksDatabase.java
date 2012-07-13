@@ -74,8 +74,7 @@ public final class SQLiteBooksDatabase extends BooksDatabase {
 		if (version >= currentVersion) {
 			return;
 		}
-		//UIUtil.wait((version == 0) ? "creatingBooksDatabase" : "updatingBooksDatabase", new Runnable() { 
-		UIUtil.wait("creatingBooksDatabase", new Runnable() { //maryhit
+		UIUtil.wait((version == 0) ? "creatingBooksDatabase" : "updatingBooksDatabase", new Runnable() { 
 			public void run() {
 				myDatabase.beginTransaction();
 

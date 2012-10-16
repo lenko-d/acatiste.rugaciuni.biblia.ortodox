@@ -286,6 +286,21 @@ public class BookInfoActivity extends Activity implements MenuItem.OnMenuItemCli
 		addMenuItem(menu, OPEN_BOOK, "openBook", true);
 		addMenuItem(menu, EDIT_INFO, "editInfo", true);
 		addMenuItem(menu, RELOAD_INFO, "reloadInfo", false);
+		
+		//maryhit start -> auto load book, skip a useless screen
+		if (myDontReloadBook) {
+			finish();
+		} else {
+			startActivity(
+				new Intent(getApplicationContext(), FBReader.class)
+					.setAction(Intent.ACTION_VIEW)
+					.putExtra(FBReader.BOOK_PATH_KEY, myFile.getPath())
+					.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+			);
+		}
+		//maryhit end
+		
+		
 		return true;
 	}
 

@@ -94,6 +94,19 @@ public class BookInfoActivity extends Activity {
 			setupFileInfo(book);
 		}
 
+		//maryhit start -> auto load book, skip a useless screen
+		if (myDontReloadBook) {
+			finish();
+		} else {
+			startActivity(
+				new Intent(getApplicationContext(), FBReader.class)
+					.setAction(Intent.ACTION_VIEW)
+					.putExtra(FBReader.BOOK_PATH_KEY, myFile.getPath())
+					.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+			);
+		}
+		//maryhit end 
+		
 		setupButton(R.id.book_info_button_open, "openBook", new View.OnClickListener() {
 			public void onClick(View view) {
 				if (myDontReloadBook) {

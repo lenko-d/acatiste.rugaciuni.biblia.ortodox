@@ -44,7 +44,9 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 
 	public static final String SELECTED_BOOK_PATH_KEY = "SelectedBookPath";
 	public static final String START_SEARCH_IMMEDIATELY = "START_SEARCH_IMMEDIATELY";
-
+	public static final String OPEN_BOOKS_FOLDER = "OPEN_BOOKS_FOLDER";//maryhit
+	public static final String OPEN_BOOKS_FOLDER_ITEM = "OPEN_BOOKS_FOLDER_ITEM";//maryhit
+	
 	private BooksDatabase myDatabase;
 	private Library myLibrary;
 
@@ -331,5 +333,15 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 		if ("true".equalsIgnoreCase(startSearch)){
 			startSearch("", false, null, false);
 		}
+		//maryhit start
+		String openBookFolder = getIntent().getStringExtra(OPEN_BOOKS_FOLDER);
+		if ("true".equalsIgnoreCase(openBookFolder)){
+			final LibraryTree tree = (LibraryTree)getListAdapter().getItem( getListAdapter().getCount());
+			final FBTree firstChild = tree.subTrees().get(0);
+			if ( null != firstChild){
+				openTree(firstChild, null, false);
+			}
+		}
+		//martyhit end
 	}
 }

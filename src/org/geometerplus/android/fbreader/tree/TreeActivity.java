@@ -106,7 +106,7 @@ public abstract class TreeActivity extends ListActivity {
 	protected void onCurrentTreeChanged() {
 	}
 
-	private void openTree(final FBTree tree, final FBTree treeToSelect, final boolean storeInHistory) {
+	protected void openTree(final FBTree tree, final FBTree treeToSelect, final boolean storeInHistory) {//maryhit private to protected for OpenBooksFolder Hack
 		switch (tree.getOpeningStatus()) {
 			case WAIT_FOR_OPEN:
 			case ALWAYS_RELOAD_BEFORE_OPENING:

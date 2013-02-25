@@ -146,7 +146,7 @@ public final class FBReader extends ZLAndroidActivity {
 
 		fbReader.addAction(ActionCode.SHOW_LIBRARY, new ShowLibraryAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_LIBRARY_SDCARD, new ShowLibrarySDCardFolderAction(this, fbReader));//maryhit
-		fbReader.addAction(ActionCode.SHOW_LIBRARY_OPEN_BOOKS, new ShowLibraryOpenBooksFolderAction(this, fbReader));//maryhit
+		fbReader.addAction(ActionCode.SHOW_LIBRARY_OPEN_BOOKS, new ShowLibraryOpenBooksFolderAction(this, fbReader));//maryhit Nicu/maryhit adaugat pentru buton nou direct in directoare
 		fbReader.addAction(ActionCode.SHOW_PREFERENCES, new ShowPreferencesAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_BOOK_INFO, new ShowBookInfoAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_TOC, new ShowTOCAction(this, fbReader));

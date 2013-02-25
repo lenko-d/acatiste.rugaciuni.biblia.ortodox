@@ -333,7 +333,7 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 		if ("true".equalsIgnoreCase(startSearch)){
 			startSearch("", false, null, false);
 		}
-		//maryhit start
+		//maryhit start Nicu/maryhit adaugat pentru buton nou direct in directoare:
 		String openBookFolder = getIntent().getStringExtra(OPEN_BOOKS_FOLDER);
 		if ("true".equalsIgnoreCase(openBookFolder)){
 			final LibraryTree tree = (LibraryTree)getListAdapter().getItem( getListAdapter().getCount());

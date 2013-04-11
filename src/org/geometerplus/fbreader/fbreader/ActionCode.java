@@ -22,7 +22,7 @@ package org.geometerplus.fbreader.fbreader;
 public interface ActionCode {
 	String SHOW_LIBRARY = "library";
 	String SHOW_LIBRARY_SDCARD = "library_sdcard";
-	String SHOW_LIBRARY_OPEN_BOOKS = "library_open_books";//maryhit
+	String SHOW_LIBRARY_OPEN_BOOKS = "library_open_books";//maryhit new button for direct books
 	String SHOW_PREFERENCES = "preferences";
 	String SHOW_BOOK_INFO = "bookInfo";
 	String SHOW_TOC = "toc";

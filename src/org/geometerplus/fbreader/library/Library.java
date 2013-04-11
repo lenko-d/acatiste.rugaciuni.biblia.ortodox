@@ -63,6 +63,7 @@ public final class Library extends AbstractLibrary {
 	public Library(BooksDatabase db) {
 		myDatabase = db;
 
+		new FileFirstLevelTree(myRootTree, ROOT_FILE_TREE);//maryhit - I copied from below here as well for tests
 		new FavoritesTree(myRootTree, ROOT_FAVORITES);
 		new FirstLevelTree(myRootTree, ROOT_RECENT);
 		new FirstLevelTree(myRootTree, ROOT_BY_AUTHOR);

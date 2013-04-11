@@ -63,12 +63,13 @@ public final class Library extends AbstractLibrary {
 	public Library(BooksDatabase db) {
 		myDatabase = db;
 
+		new FileFirstLevelTree(myRootTree, ROOT_FILE_TREE);//maryhit moved on top
 		new FavoritesTree(myRootTree, ROOT_FAVORITES);
 		new FirstLevelTree(myRootTree, ROOT_RECENT);
-		new FirstLevelTree(myRootTree, ROOT_BY_AUTHOR);
-		new FirstLevelTree(myRootTree, ROOT_BY_TITLE);
-		new FirstLevelTree(myRootTree, ROOT_BY_TAG);
-		new FileFirstLevelTree(myRootTree, ROOT_FILE_TREE);
+		//new FirstLevelTree(myRootTree, ROOT_BY_AUTHOR);//maryhit disabled
+		//new FirstLevelTree(myRootTree, ROOT_BY_TITLE);//maryhit disabled
+		//new FirstLevelTree(myRootTree, ROOT_BY_TAG);//maryhit disabled
+		//new FileFirstLevelTree(myRootTree, ROOT_FILE_TREE);//maryhit moved on top
 	}
 
 	public LibraryTree getRootTree() {

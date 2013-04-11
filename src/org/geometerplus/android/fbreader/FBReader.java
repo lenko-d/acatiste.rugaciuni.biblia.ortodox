@@ -146,7 +146,7 @@ public final class FBReader extends ZLAndroidActivity {
 
 		fbReader.addAction(ActionCode.SHOW_LIBRARY, new ShowLibraryAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_LIBRARY_SDCARD, new ShowLibrarySDCardFolderAction(this, fbReader));//maryhit
-		fbReader.addAction(ActionCode.SHOW_LIBRARY_OPEN_BOOKS, new ShowLibraryOpenBooksFolderAction(this, fbReader));//maryhit Nicu/maryhit adaugat pentru buton nou direct in directoare
+//NOT WORKING-DISABLED		fbReader.addAction(ActionCode.SHOW_LIBRARY_OPEN_BOOKS, new ShowLibraryOpenBooksFolderAction(this, fbReader));//maryhit Nicu/maryhit adaugat pentru buton nou direct in directoare
 		fbReader.addAction(ActionCode.SHOW_PREFERENCES, new ShowPreferencesAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_BOOK_INFO, new ShowBookInfoAction(this, fbReader));
 		fbReader.addAction(ActionCode.SHOW_TOC, new ShowTOCAction(this, fbReader));
@@ -399,7 +399,7 @@ public final class FBReader extends ZLAndroidActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		addMenuItem(menu, ActionCode.SHOW_LIBRARY_SDCARD, R.drawable.fbreader);//ic_list_library_folder);//maryhit
-		addMenuItem(menu, ActionCode.SHOW_LIBRARY_OPEN_BOOKS, R.drawable.fbreader);//ic_list_library_folder);//maryhit
+//NOT WORKING		addMenuItem(menu, ActionCode.SHOW_LIBRARY_OPEN_BOOKS, R.drawable.fbreader);//ic_list_library_folder);//maryhit
 		addMenuItem(menu, ActionCode.SHOW_LIBRARY, R.drawable.ic_menu_library);
 		addMenuItem(menu, ActionCode.SHOW_TOC, R.drawable.ic_menu_toc);
 		addMenuItem(menu, ActionCode.SHOW_BOOKMARKS, R.drawable.ic_menu_bookmarks);

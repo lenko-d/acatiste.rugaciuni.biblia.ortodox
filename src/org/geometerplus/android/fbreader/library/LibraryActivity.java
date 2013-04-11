@@ -43,9 +43,8 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 	static volatile boolean ourToBeKilled = false;
 
 	public static final String SELECTED_BOOK_PATH_KEY = "SelectedBookPath";
-	public static final String START_SEARCH_IMMEDIATELY = "START_SEARCH_IMMEDIATELY";
-	public static final String OPEN_BOOKS_FOLDER = "OPEN_BOOKS_FOLDER";//maryhit
-	public static final String OPEN_BOOKS_FOLDER_ITEM = "OPEN_BOOKS_FOLDER_ITEM";//maryhit
+	public static final String START_SEARCH_IMMEDIATELY = "Start_SEARCH_IMMEDIATELY";
+	public static final String OPEN_BOOKS_FOLDER = "Open_BOOKS_FOLDER";//maryhit
 	
 	private BooksDatabase myDatabase;
 	private Library myLibrary;
@@ -329,10 +328,6 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 	@Override
 	protected void onStart() {
 		super.onStart();
-		String startSearch = getIntent().getStringExtra(START_SEARCH_IMMEDIATELY);
-		if ("true".equalsIgnoreCase(startSearch)){
-			startSearch("", false, null, false);
-		}
 		//maryhit start Nicu/maryhit adaugat pentru buton nou direct in directoare:
 		String openBookFolder = getIntent().getStringExtra(OPEN_BOOKS_FOLDER);
 		if ("true".equalsIgnoreCase(openBookFolder)){
@@ -341,7 +336,13 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 			if ( null != firstChild){
 				openTree(firstChild, null, false);
 			}
+
 		}
+		// maryhit end
+		//String startSearch = getIntent().getStringExtra(START_SEARCH_IMMEDIATELY);
+		//if ("true".equalsIgnoreCase(startSearch)){
+		//	startSearch("", false, null, false);
+		//}
 		//martyhit end
 	}
 }

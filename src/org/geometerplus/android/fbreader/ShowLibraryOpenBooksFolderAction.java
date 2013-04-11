@@ -35,12 +35,17 @@ class ShowLibraryOpenBooksFolderAction extends FBAndroidAction {
 	@Override
 	protected void run(Object... params) {
 		final BookModel model = Reader.Model;
-		Intent intent = new Intent(BaseActivity.getApplicationContext(),
-				LibraryActivity.class);
-		intent.putExtra(LibraryActivity.SELECTED_BOOK_PATH_KEY, Paths.BooksDirectoryOption().getValue());
-				//"/mnt/sdcard/Books");
-		intent.putExtra(LibraryActivity.OPEN_BOOKS_FOLDER,
-				"true");
+		Intent intent = new Intent(BaseActivity.getApplicationContext(), LibraryActivity.class);
+		
+		if (model != null && model.Book != null) {
+			intent.putExtra(LibraryActivity.SELECTED_BOOK_PATH_KEY, model.Book.File.getPath());
+		}
+		else {
+			intent.putExtra(LibraryActivity.SELECTED_BOOK_PATH_KEY, Paths.BooksDirectoryOption().getValue());
+		}
+		//"/mnt/sdcard/Books/Acatiste");// "/storage/emulated/0/Books"
+		
+		intent.putExtra(LibraryActivity.OPEN_BOOKS_FOLDER, "true");
 		BaseActivity.startActivity(intent);
 	}
 }

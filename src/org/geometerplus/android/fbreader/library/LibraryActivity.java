@@ -44,7 +44,7 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 
 	public static final String SELECTED_BOOK_PATH_KEY = "SelectedBookPath";
 	public static final String START_SEARCH_IMMEDIATELY = "Start_SEARCH_IMMEDIATELY";
-	//NOT WORKING - DISABLED: public static final String OPEN_BOOKS_FOLDER = "Open_BOOKS_FOLDER";//maryhit
+	public static final String OPEN_BOOKS_FOLDER = "Open_BOOKS_FOLDER";//maryhit added for new button direct in books
 	
 	private BooksDatabase myDatabase;
 	private Library myLibrary;
@@ -330,8 +330,6 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 		super.onStart();
 		
 		//maryhit start Nicu/maryhit adaugat pentru buton nou direct in directoare:
-		//NOT WORKING - DISABLED:
-		/* 
 		String openBookFolder = getIntent().getStringExtra(OPEN_BOOKS_FOLDER);
 		if ("true".equalsIgnoreCase(openBookFolder)){
 			final LibraryTree tree = (LibraryTree)getListAdapter().getItem( getListAdapter().getCount());
@@ -340,7 +338,7 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 				openTree(firstChild, null, false);
 			}
 
-		}*/
+		}
 		// maryhit end
 		String startSearch = getIntent().getStringExtra(START_SEARCH_IMMEDIATELY);
 		if ("true".equalsIgnoreCase(startSearch)){

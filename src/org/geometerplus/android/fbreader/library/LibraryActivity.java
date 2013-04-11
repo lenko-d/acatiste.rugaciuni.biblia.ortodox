@@ -44,7 +44,7 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 
 	public static final String SELECTED_BOOK_PATH_KEY = "SelectedBookPath";
 	public static final String START_SEARCH_IMMEDIATELY = "Start_SEARCH_IMMEDIATELY";
-	public static final String OPEN_BOOKS_FOLDER = "Open_BOOKS_FOLDER";//maryhit
+	//NOT WORKING - DISABLED: public static final String OPEN_BOOKS_FOLDER = "Open_BOOKS_FOLDER";//maryhit
 	
 	private BooksDatabase myDatabase;
 	private Library myLibrary;
@@ -328,7 +328,10 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 	@Override
 	protected void onStart() {
 		super.onStart();
+		
 		//maryhit start Nicu/maryhit adaugat pentru buton nou direct in directoare:
+		//NOT WORKING - DISABLED:
+		/* 
 		String openBookFolder = getIntent().getStringExtra(OPEN_BOOKS_FOLDER);
 		if ("true".equalsIgnoreCase(openBookFolder)){
 			final LibraryTree tree = (LibraryTree)getListAdapter().getItem( getListAdapter().getCount());
@@ -337,12 +340,12 @@ public class LibraryActivity extends TreeActivity implements MenuItem.OnMenuItem
 				openTree(firstChild, null, false);
 			}
 
-		}
+		}*/
 		// maryhit end
-		//String startSearch = getIntent().getStringExtra(START_SEARCH_IMMEDIATELY);
-		//if ("true".equalsIgnoreCase(startSearch)){
-		//	startSearch("", false, null, false);
-		//}
+		String startSearch = getIntent().getStringExtra(START_SEARCH_IMMEDIATELY);
+		if ("true".equalsIgnoreCase(startSearch)){
+			startSearch("", false, null, false);
+		}
 		//martyhit end
 	}
 }

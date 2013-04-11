@@ -398,7 +398,7 @@ public final class FBReader extends ZLAndroidActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		addMenuItem(menu, ActionCode.SHOW_LIBRARY_SDCARD, R.drawable.fbreader);//ic_list_library_folder);//maryhit
+		addMenuItem(menu, ActionCode.SHOW_LIBRARY_SDCARD, R.drawable.ic_list_library_folder);//fbreader);//ic_list_library_folder);//maryhit
 //NOT WORKING		addMenuItem(menu, ActionCode.SHOW_LIBRARY_OPEN_BOOKS, R.drawable.fbreader);//ic_list_library_folder);//maryhit
 		addMenuItem(menu, ActionCode.SHOW_LIBRARY, R.drawable.ic_menu_library);
 		addMenuItem(menu, ActionCode.SHOW_TOC, R.drawable.ic_menu_toc);

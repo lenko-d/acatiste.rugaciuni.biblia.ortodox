@@ -59,7 +59,9 @@ public class TipsManager {
 	}
 
 	private String getUrl() {
-		return "https://data.fbreader.org/tips/tips.php";
+		//maryhit to disbale data usage:
+		return "http://127.0.0.1/tips/tips.php";
+		//return "https://data.fbreader.org/tips/tips.php";
 	}
 
 	private String getLocalFilePath() {

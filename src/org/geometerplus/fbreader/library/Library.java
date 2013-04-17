@@ -66,9 +66,9 @@ public final class Library extends AbstractLibrary {
 		new FileFirstLevelTree(myRootTree, ROOT_FILE_TREE);//maryhit - I copied from below here as well for tests
 		new FavoritesTree(myRootTree, ROOT_FAVORITES);
 		new FirstLevelTree(myRootTree, ROOT_RECENT);
-		//new FirstLevelTree(myRootTree, ROOT_BY_AUTHOR);//maryhit commented out
-		//new FirstLevelTree(myRootTree, ROOT_BY_TITLE);
-		//new FirstLevelTree(myRootTree, ROOT_BY_TAG);//maryhit commented out
+		new FirstLevelTree(myRootTree, ROOT_BY_AUTHOR);//maryhit commented out
+		new FirstLevelTree(myRootTree, ROOT_BY_TITLE);
+		new FirstLevelTree(myRootTree, ROOT_BY_TAG);//maryhit commented out
 		//new FileFirstLevelTree(myRootTree, ROOT_FILE_TREE);//maryhit commented out
 	}
 

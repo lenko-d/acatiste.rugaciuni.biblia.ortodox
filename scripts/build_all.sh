@@ -54,8 +54,8 @@ apk_save(){
 
 }
 
-return_to_master(){
-	CURRENT_BUILD_BRANCH="master"
+return_to_ICS(){
+	CURRENT_BUILD_BRANCH="ice-cream-sandwich"
 	checkout
 }
 
@@ -102,14 +102,14 @@ case $1 in
 			export CURRENT_BUILD_BRANCH=${B}
 			do_all
 		done
-		return_to_master
+		#return_to_ICS
 		show_status
 		byebye
 		;;
 	@($VALID_BRANCHES))
 		export CURRENT_BUILD_BRANCH=${1}
 		do_all
-		return_to_master
+		#return_to_ICS
 		show_status
 		byebye
 		;;

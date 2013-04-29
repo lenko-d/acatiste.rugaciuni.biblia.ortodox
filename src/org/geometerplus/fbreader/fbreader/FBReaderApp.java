@@ -163,7 +163,7 @@ public final class FBReaderApp extends ZLApplication {
 			PackageInfo pinfo = ctx.getPackageManager().getPackageInfo(
 					ctx.getPackageName(), 0);
 			int verFromAPK = pinfo.versionCode;
-			verFromAPK=1030722;//maryhit hack 10613... 
+			//verFromAPK=1030722;//maryhit hack 10613... 
 
 			if (verFromAPK <= verFromSDCard) { // verFromAPK == verFromSDCard ){
 				// // <=

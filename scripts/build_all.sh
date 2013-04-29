@@ -16,8 +16,8 @@ update_version_var(){
 update_versiune_txt(){
 	echo "______ updating versiune.txt ........... -START-"
 	mkdir -p $prj_dir/assets/data/SDCard/Books/
-	#echo -n $VERSION> $prj_dir/assets/data/SDCard/Books/versiune.txt
-	echo -n 1030722 > $prj_dir/assets/data/SDCard/Books/versiune.txt
+	echo -n $VERSION> $prj_dir/assets/data/SDCard/Books/versiune.txt
+	#echo -n 1030722 > $prj_dir/assets/data/SDCard/Books/versiune.txt
 	echo "______ updating versiune.txt ........... -DONE-"
 }
 

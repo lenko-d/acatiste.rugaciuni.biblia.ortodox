@@ -9,6 +9,6 @@ En:	More details at: http://www.fbreader.org
 
 Pentru mai multe detalii despre proiectul nostru:
 En: For more details on our project, see: 
-- http://ortodox.maryhit.com
+- https://sites.google.com/site/acatisterugaciuniortodoxe/
 - facebook page: aplicatii romanesti
 - email us: aplicatii.romanesti@gmail.com

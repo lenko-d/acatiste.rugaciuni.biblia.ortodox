@@ -4,37 +4,38 @@
 <body>
 <title><p>Acatiste Rugaciuni Scrieri Ortodoxe &FBReaderVersion;</p></title>
 <empty-line />
-<subtitle><p>Despre Aplicatie:</p></subtitle>
-<p>Acatiste_Rugaciuni_Scrieri_Ortodoxe este o aplicatie pentru citit scrieri ortodoxe in principal, care are la baza o aplicatie open source pentru citit carti electronice <code>ePub</code> si <code>fb2</code>.</p>
-<p>Acum aplicatia are: Biblia Ortodoxa (inclusiv varianta adnotata Bartolomeu Anania, pe intelesul tuturor), Acatiste, Paraclise, Rugaciuni si Scrieri Ortodoxe, in total peste 100 de carti.  </p>
+
+<p>Acatiste_Rugaciuni_Scrieri_Ortodoxe este o aplicatie pentru citit scrieri ortodoxe in principal, care are la baza o aplicatie open source (FBReaderJ) pentru citit carti electronice <code>ePub</code> si <code>fb2</code>.</p>
+<p>Acum aplicatia are: Biblia Ortodoxa (inclusiv varianta adnotata Bartolomeu Anania, pe intelesul tuturor), Acatiste, Paraclise, Rugaciuni, Filocalia, Vietile Sfintilor si multe alte scrieri ortodoxe, in total peste 500 de carti.  </p>
 <p>Pe parcurs vom incerca sa adaugam si mai multe carti ortodoxe.</p>
 <empty-line />
 <subtitle><p>Utilizare:</p></subtitle>
-<p>Pentru a gasi cartile incluse in aplicatie, intrati in <a l:href="fbreader-action://library">biblioteca</a> (apasati tasta meniu si selectati biblioteca).
-Oriunde in biblioteca se poate cauta numele cartii folosind tasta speciala Android pentru cautare.</p>
-
+<p>Pentru a gasi cartile incluse in aplicatie, dupa ce ati apasat butonul biblioteca al aplicatiei (este primul buton), sunt doua metode:
+1. scrieti un cuvant cheie al titlului cartii, spre exemplu (biblia sau numele sfant, etc.), algeti cartea si ea se va deschide automat.
+2. Daca stiti locatia cartii in librarie (sdcard/Books/...), in loc sa tastati numele, puteti alge cartea trecand prin directoarele din dispozitivul d-vs.
 <p>
     Pentru a da pagina trageti cu degetul orizontal pe ecran, sau folositi tastele de volum.</p><empty-line />
 <p>
-    Butonul <a l:href="fbreader-action://preferences">Preferinte Dialog</a> va da voie sa personalizati aplicatia pe gustul dumneavoastra: puteti schimba culorile, fonturile, diverse directoare, cum sa dati pagina, etc.</p>
-
+    Butonul Preferinte Dialog va da voie sa personalizati aplicatia: puteti schimba culorile, fonturile, diverse directoare, cum sa dati pagina, etc.</p>
+<p> Luminozitatea se poate modifica glisand degetul sus-jos pe extremitatea stanga a excranului.</p>
+<p> Aplicatia are doua moduri de citire: Modul Zi si Modul Noapte (pentru a va proteja ochii)</p>. Aceste moduri se pot modifica din meniul principal.
 <p>
     <a l:href="fbreader-action://menu">Meniul Aplicatiei</a> va da voie sa navigati prin biblioteci si sa controlali aplicatia. Daca dispozitivul dumneavoastra nu are un buton de <code>Meniu</code>, apasati pe partea centrala inferioara a ecranului pentru a intra in meniu.</p>
 <empty-line />
 
 <subtitle><p>Alte detalii:</p></subtitle>
 
-<p> Daca aveti carti in formatele suportate, puteti sa le puneti in directorul <code>Books</code> de pe cardul de memorie, iar apoi cartile vor putea fi gasite in <a l:href="fbreader-action://library">biblioteca</a>.</p>
+<p> Daca aveti carti in formatele suportate (epub, mobi, rtf, txt), puteti sa le puneti in directorul <code>Books</code> de pe cardul de memorie, iar apoi cartile vor putea fi gasite in biblioteca.</p>
 <p>
-    Exista si o <a l:href="fbreader-action://networkLibrary">Biblioteca Online</a> care contine o multitudine de carti din toate domeniile (e-books) care pot fi preluate fie gratis, fie contra cost. Pentru a fi gasite si de utilizatorii non-android, pe viitor se va incerca postarea acestor carti ortodoxe si acolo.</p><empty-line />
+    Exista si o Biblioteca Online care contine o multitudine de carti din toate domeniile (e-books) care pot fi preluate fie gratis, fie contra cost. Pentru a fi gasite si de utilizatorii non-android, pe viitor se va incerca postarea acestor carti ortodoxe si acolo.</p><empty-line />
 <p>
     Mai multe informatii despre FBReader (aplicatia de baza) puteti gasi pe site-ul <a l:href="http://www.fbreader.org/FBReaderJ">FBReader</a>.</p>
     <p>Aceasta aplicatie este distribuita gratuit, sub licenta GPL.</p>
-	Mai multe informatii despre Acatiste_Rugaciuni_Scrieri_Ortodoxe veti putea gasi pe site-ul: <a l:href="http://ortodox.maryhit.com/">ortodox.maryhit.com</a> sau <a l:href="https://sites.google.com/site/acatisterugaciuniortodoxe/">acatisterugaciuniortodoxe</a>.
+	Mai multe informatii despre Acatiste_Rugaciuni_Scrieri_Ortodoxe veti putea gasi pe site-ul: <a l:href="https://sites.google.com/site/acatisterugaciuniortodoxe/">acatisterugaciuniortodoxe</a>.
 	Ne puteti urmari pe <a l:href="https://plus.google.com/u/0/b/104472561909298753983/#104472561909298753983/posts">Google Plus</a>.
 		
 	Daca aveti intrebari, sugestii sau puteti ajuta aplicatia, ne puteti contacta prin <a l:href="mailto:aplicatii.romanesti@gmail.com">e-mail</a>.
-	Nu este necesar sa aveti cunostinte avansate de calculatoare pentru a participa. Inclusiv promovarea aplicatiei este foarte importanta pentru a incuraja continuarea ei.  	 
+	Nu este necesar sa aveti cunostinte avansate de calculatoare pentru a participa. Inclusiv promovarea aplicatiei este foarte importanta pentru a incuraja dezvoltarea ei in continuare.
 	</p><empty-line />
 </body>
 </FictionBook>

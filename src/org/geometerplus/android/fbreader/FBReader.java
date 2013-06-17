@@ -404,16 +404,18 @@ public final class FBReader extends ZLAndroidActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		addMenuItem(menu, ActionCode.SHOW_LIBRARY_SDCARD, R.drawable.ic_list_library_folder);//fbreader);//ic_list_library_folder);//maryhit
+		addMenuItem(menu, ActionCode.SHOW_LIBRARY_SDCARD, R.drawable.ic_list_library_search);//fbreader);//ic_list_library_folder);//maryhit
 		//NOT WORKING - DISABLED: addMenuItem(menu, ActionCode.SHOW_LIBRARY_OPEN_BOOKS, R.drawable.fbreader);//ic_list_library_folder);//maryhit
-		addMenuItem(menu, ActionCode.SHOW_LIBRARY, R.drawable.ic_menu_library);
 		addMenuItem(menu, ActionCode.SHOW_TOC, R.drawable.ic_menu_toc);
 		addMenuItem(menu, ActionCode.SHOW_BOOKMARKS, R.drawable.ic_menu_bookmarks);
 		addMenuItem(menu, ActionCode.SWITCH_TO_NIGHT_PROFILE, R.drawable.ic_menu_night);
 		addMenuItem(menu, ActionCode.SWITCH_TO_DAY_PROFILE, R.drawable.ic_menu_day);
-		addMenuItem(menu, ActionCode.SHOW_NETWORK_LIBRARY, R.drawable.ic_menu_networklibrary);
 		addMenuItem(menu, ActionCode.SEARCH, R.drawable.ic_menu_search);
 		addMenuItem(menu, ActionCode.SHOW_PREFERENCES);
+		addMenuItem(menu, ActionCode.INCREASE_FONT);
+		addMenuItem(menu, ActionCode.DECREASE_FONT);
+		addMenuItem(menu, ActionCode.SHOW_LIBRARY, R.drawable.ic_menu_library);
+		addMenuItem(menu, ActionCode.SHOW_NETWORK_LIBRARY, R.drawable.ic_menu_networklibrary);
 		addMenuItem(menu, ActionCode.SHOW_BOOK_INFO);
 		final Menu subMenu = addSubMenu(menu, "screenOrientation");
 		addMenuItem(subMenu, ActionCode.SET_SCREEN_ORIENTATION_SYSTEM);
@@ -424,8 +426,6 @@ public final class FBReader extends ZLAndroidActivity {
 			addMenuItem(subMenu, ActionCode.SET_SCREEN_ORIENTATION_REVERSE_PORTRAIT);
 			addMenuItem(subMenu, ActionCode.SET_SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
 		}
-		addMenuItem(menu, ActionCode.INCREASE_FONT);
-		addMenuItem(menu, ActionCode.DECREASE_FONT);
 		addMenuItem(menu, ActionCode.SHOW_NAVIGATION);
 		synchronized (myPluginActions) {
 			int index = 0;

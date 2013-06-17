@@ -107,7 +107,7 @@ public final class FBReaderApp extends ZLApplication {
 		new ZLStringOption("Options", "FooterFont", "Droid Sans");
 
 	final ZLStringOption ColorProfileOption =
-		new ZLStringOption("Options", "ColorProfile", ColorProfile.DAY);//maryhit: default for day/night is here
+		new ZLStringOption("Options", "ColorProfile", ColorProfile.NIGHT);//maryhit: default for day/night is here
 
 	public final ZLBooleanOption ShowPreviousBookInCancelMenuOption =
 		new ZLBooleanOption("CancelMenu", "previousBook", false);

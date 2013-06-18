@@ -665,19 +665,6 @@
 					<node name="url" value="http://www.facebook.com/people/Aplicatii-Romanesti/100003250206506"/>
 				</node>
 			</node>
-			<node name="about" value="About FBReader" toBeTranslated="true">
-				<node name="summary" value="Version info, contacts" toBeTranslated="true"/>
-				<node name="version" value="Version" toBeTranslated="true"/>
-				<node name="site" value="Visit our website" toBeTranslated="true">
-					<node name="url" value="http://www.fbreader.org/"/>
-				</node>
-				<node name="email" value="Send us an e-mail" toBeTranslated="true">
-					<node name="url" value="mailto:contact@geometerplus.com" toBeTranslated="true"/>
-				</node>
-				<node name="twitter" value="Follow us at twitter" toBeTranslated="true">
-					<node name="url" value="http://twitter.com/fbreader"/>
-				</node>
-			</node>
 		</node>
 		<node name="OptionsDialog">
 			<node name="tab">
@@ -702,7 +689,6 @@
 			<node name="loadingBook" value="Se deschide cartea. Va rugam asteptati&#8230;"/>
 			<node name="loadingBookList" value="Deschiderea biblioteca. Va rugam asteptati&#8230;"/>
 			<node name="creatingBooksDatabase" value="Crearea bazei de date de carti. Va rugam asteptati&#8230;"/>
-			<node name="InitBooksDatabase" value="Initializarea bazei de date de carti. Va rugam asteptati&#8230;"/>
 			<node name="updatingBooksDatabase" value="Actualizarea bazei de date carti. Va rugam asteptati&#8230;"/>
 			<node name="loadingNetworkLibrary" value="Se deschide biblioteca. Va rugam asteptati&#8230;"/>
 			<node name="authentication" value="Autentificare. Va rugam asteptati&#8230;"/>

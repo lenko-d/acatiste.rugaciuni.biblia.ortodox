@@ -702,6 +702,7 @@
 			<node name="loadingBook" value="Se deschide cartea. Va rugam asteptati&#8230;"/>
 			<node name="loadingBookList" value="Deschiderea biblioteca. Va rugam asteptati&#8230;"/>
 			<node name="creatingBooksDatabase" value="Crearea bazei de date de carti. Va rugam asteptati&#8230;"/>
+			<node name="InitBooksDatabase" value="Initializarea bazei de date de carti. Va rugam asteptati&#8230;"/>
 			<node name="updatingBooksDatabase" value="Actualizarea bazei de date carti. Va rugam asteptati&#8230;"/>
 			<node name="loadingNetworkLibrary" value="Se deschide biblioteca. Va rugam asteptati&#8230;"/>
 			<node name="authentication" value="Autentificare. Va rugam asteptati&#8230;"/>

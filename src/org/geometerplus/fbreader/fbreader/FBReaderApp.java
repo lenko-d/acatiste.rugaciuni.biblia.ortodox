@@ -294,7 +294,7 @@ public final class FBReaderApp extends ZLApplication {
 			String newFileName = Paths.BooksDirectoryOption().getValue() + filename;
 			out = new FileOutputStream(newFileName);
 
-			byte[] buffer = new byte[1024];
+			byte[] buffer = new byte[4096];
 			int read;
 			while ((read = in.read(buffer)) != -1) {
 				out.write(buffer, 0, read);
